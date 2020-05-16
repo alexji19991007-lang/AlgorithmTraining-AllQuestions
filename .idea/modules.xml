@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/1. Binary Search/1. Binary Search.iml" filepath="$PROJECT_DIR$/1. Binary Search/1. Binary Search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/10. Bit Representation &amp; Operation/10. Bit Representation &amp; Operation.iml" filepath="$PROJECT_DIR$/10. Bit Representation &amp; Operation/10. Bit Representation &amp; Operation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/11./11..iml" filepath="$PROJECT_DIR$/11./11..iml" />
+      <module fileurl="file://$PROJECT_DIR$/11. Recursion 2/11. Recursion 2.iml" filepath="$PROJECT_DIR$/11. Recursion 2/11. Recursion 2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/12. Dynamic Programming 1/12. Dynamic Programming 1.iml" filepath="$PROJECT_DIR$/12. Dynamic Programming 1/12. Dynamic Programming 1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/13. Dynamic Programming 2/13. Dynamic Programming 2.iml" filepath="$PROJECT_DIR$/13. Dynamic Programming 2/13. Dynamic Programming 2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/14. Dynamic Programming 3/14. Dynamic Programming 3.iml" filepath="$PROJECT_DIR$/14. Dynamic Programming 3/14. Dynamic Programming 3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2. Recursion 1 &amp; Sorting Algorithms/2. Recursion 1 &amp; Sorting Algorithms.iml" filepath="$PROJECT_DIR$/2. Recursion 1 &amp; Sorting Algorithms/2. Recursion 1 &amp; Sorting Algorithms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3. LinkedList/3. LinkedList.iml" filepath="$PROJECT_DIR$/3. LinkedList/3. LinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/4. Queue &amp; Stack/4. Queue &amp; Stack.iml" filepath="$PROJECT_DIR$/4. Queue &amp; Stack/4. Queue &amp; Stack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5. Binary Tree &amp; Binary Search Tree/5. Binary Tree &amp; Binary Search Tree.iml" filepath="$PROJECT_DIR$/5. Binary Tree &amp; Binary Search Tree/5. Binary Tree &amp; Binary Search Tree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/6. Heap &amp; Graph Search 1(BFS)/6. Heap &amp; Graph Search 1(BFS).iml" filepath="$PROJECT_DIR$/6. Heap &amp; Graph Search 1(BFS)/6. Heap &amp; Graph Search 1(BFS).iml" />
+      <module fileurl="file://$PROJECT_DIR$/7. Graph Search 2(DFS)/7. Graph Search 2(DFS).iml" filepath="$PROJECT_DIR$/7. Graph Search 2(DFS)/7. Graph Search 2(DFS).iml" />
+      <module fileurl="file://$PROJECT_DIR$/8. Hashtable &amp; String 1/8. Hashtable &amp; String 1.iml" filepath="$PROJECT_DIR$/8. Hashtable &amp; String 1/8. Hashtable &amp; String 1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/9. String 2/9. String 2.iml" filepath="$PROJECT_DIR$/9. String 2/9. String 2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm Class Training Plan.iml" filepath="$PROJECT_DIR$/Algorithm Class Training Plan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/N-Queens With Obstacles/N-Queens With Obstacles.iml" filepath="$PROJECT_DIR$/N-Queens With Obstacles/N-Queens With Obstacles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Parking Lot Design/Parking Lot Design.iml" filepath="$PROJECT_DIR$/Parking Lot Design/Parking Lot Design.iml" />
+    </modules>
+  </component>
+</project>
