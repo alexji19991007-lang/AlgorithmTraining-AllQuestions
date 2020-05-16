@@ -18,8 +18,25 @@
       <module fileurl="file://$PROJECT_DIR$/8. Hashtable &amp; String 1/8. Hashtable &amp; String 1.iml" filepath="$PROJECT_DIR$/8. Hashtable &amp; String 1/8. Hashtable &amp; String 1.iml" />
       <module fileurl="file://$PROJECT_DIR$/9. String 2/9. String 2.iml" filepath="$PROJECT_DIR$/9. String 2/9. String 2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Algorithm Class Training Plan.iml" filepath="$PROJECT_DIR$/Algorithm Class Training Plan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Miscellaneous - Breath First Search/Miscellaneous - Breath First Search.iml" filepath="$PROJECT_DIR$/Miscellaneous - Breath First Search/Miscellaneous - Breath First Search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Miscellaneous - Depth First Search/Miscellaneous - Depth First Search.iml" filepath="$PROJECT_DIR$/Miscellaneous - Depth First Search/Miscellaneous - Depth First Search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Miscellaneous - Dynamic Programming/Miscellaneous - Dynamic Programming.iml" filepath="$PROJECT_DIR$/Miscellaneous - Dynamic Programming/Miscellaneous - Dynamic Programming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Miscellaneous - Graph/Miscellaneous - Graph.iml" filepath="$PROJECT_DIR$/Miscellaneous - Graph/Miscellaneous - Graph.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Miscellaneous - Heap/Miscellaneous - Heap.iml" filepath="$PROJECT_DIR$/Miscellaneous - Heap/Miscellaneous - Heap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Miscellaneous - Linked List/Miscellaneous - Linked List.iml" filepath="$PROJECT_DIR$/Miscellaneous - Linked List/Miscellaneous - Linked List.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Miscellaneous - Queue &amp; Stack/Miscellaneous - Queue &amp; Stack.iml" filepath="$PROJECT_DIR$/Miscellaneous - Queue &amp; Stack/Miscellaneous - Queue &amp; Stack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Miscellaneous - Tree/Miscellaneous - Tree.iml" filepath="$PROJECT_DIR$/Miscellaneous - Tree/Miscellaneous - Tree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Miscellaneous - Two-Pointers &amp; Sliding Window &amp; String/Miscellaneous - Two-Pointers &amp; Sliding Window &amp; String.iml" filepath="$PROJECT_DIR$/Miscellaneous - Two-Pointers &amp; Sliding Window &amp; String/Miscellaneous - Two-Pointers &amp; Sliding Window &amp; String.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Multi-Thread/Multi-Thread.iml" filepath="$PROJECT_DIR$/Multi-Thread/Multi-Thread.iml" />
       <module fileurl="file://$PROJECT_DIR$/N-Queens With Obstacles/N-Queens With Obstacles.iml" filepath="$PROJECT_DIR$/N-Queens With Obstacles/N-Queens With Obstacles.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Parking Lot Design/Parking Lot Design.iml" filepath="$PROJECT_DIR$/Parking Lot Design/Parking Lot Design.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OOD - Builder Pattern/OOD - Builder Pattern.iml" filepath="$PROJECT_DIR$/OOD - Builder Pattern/OOD - Builder Pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OOD - Factory Pattern/OOD - Factory Pattern.iml" filepath="$PROJECT_DIR$/OOD - Factory Pattern/OOD - Factory Pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OOD - Singleton Pattern/OOD - Singleton Pattern.iml" filepath="$PROJECT_DIR$/OOD - Singleton Pattern/OOD - Singleton Pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OOD Practice - Juice Machine Design/OOD Practice - Juice Machine Design.iml" filepath="$PROJECT_DIR$/OOD Practice - Juice Machine Design/OOD Practice - Juice Machine Design.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OOD Practice - Linux File System Design/OOD Practice - Linux File System Design.iml" filepath="$PROJECT_DIR$/OOD Practice - Linux File System Design/OOD Practice - Linux File System Design.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OOD Practice - Locker Bank Design/OOD Practice - Locker Bank Design.iml" filepath="$PROJECT_DIR$/OOD Practice - Locker Bank Design/OOD Practice - Locker Bank Design.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OOD Practice - Parking Lot Design/OOD Practice - Parking Lot Design.iml" filepath="$PROJECT_DIR$/OOD Practice - Parking Lot Design/OOD Practice - Parking Lot Design.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Object Oriented Design-Like Questions/Object Oriented Design-Like Questions.iml" filepath="$PROJECT_DIR$/Object Oriented Design-Like Questions/Object Oriented Design-Like Questions.iml" />
     </modules>
   </component>
 </project>
