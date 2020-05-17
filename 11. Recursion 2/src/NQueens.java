@@ -1,9 +1,9 @@
 import java.util.*;
 
 public class NQueens {
-    private static boolean[] usedCols;
-    private static boolean[] usedDiagonals;
-    private static boolean[] usedRevDiagonals;
+    private boolean[] usedCols;
+    private boolean[] usedDiagonals;
+    private boolean[] usedRevDiagonals;
 
     public List<List<Integer>> nqueens(int n) {
         List<List<Integer>> res = new ArrayList<>();
