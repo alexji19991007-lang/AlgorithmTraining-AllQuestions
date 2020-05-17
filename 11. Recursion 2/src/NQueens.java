@@ -1,16 +1,16 @@
 import java.util.*;
 
 public class NQueens {
-    private boolean[] usedCols;
-    private boolean[] usedDiagonals;
-    private boolean[] usedRevDiagonals;
+    private static boolean[] usedCols;
+    private static boolean[] usedDiagonals;
+    private static boolean[] usedRevDiagonals;
 
     public List<List<Integer>> nqueens(int n) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> solution = new ArrayList<>();
-        this.usedCols = new boolean[n];
-        this.usedDiagonals = new boolean[2 * n - 1];
-        this.usedRevDiagonals = new boolean[2 * n - 1];
+        usedCols = new boolean[n];
+        usedDiagonals = new boolean[2 * n - 1];
+        usedRevDiagonals = new boolean[2 * n - 1];
         queensHelper(n, 0, solution, res);
         return res;
     }
