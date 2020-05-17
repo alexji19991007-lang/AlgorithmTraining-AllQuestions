@@ -1,4 +1,8 @@
 public class PalindromePartitioning2 {
+    public static void main(String[] args) {
+        String x = "abcde";
+        System.out.println(minCut(x));
+    }
 
     public static int minCut(String s) {
         char[] c = s.toCharArray();
