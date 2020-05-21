@@ -1,7 +1,8 @@
 import java.util.HashMap;
+import java.util.Map;
 
 public class CopyListWithRandomPtr {
-    public class Node {
+    public static class Node {
         int val;
         Node next;
         Node random;
@@ -13,25 +14,24 @@ public class CopyListWithRandomPtr {
         }
     }
 
-    private HashMap<Node, Node> visited;
     public Node copyRandomList(Node head) {
         if (head == null) {
             return null;
         }
-        this.visited = new HashMap<>();
+        Map<Node, Node> visited = new HashMap<>();
         Node oldNode = head;
         Node newNode = new Node(head.val);
         visited.put(oldNode, newNode);
         while (newNode != null) {
-            newNode.next = getNode(oldNode.next);
-            newNode.random = getNode(oldNode.random);
+            newNode.next = getNode(oldNode.next, visited);
+            newNode.random = getNode(oldNode.random, visited);
             newNode = newNode.next;
             oldNode = oldNode.next;
         }
-        return getNode(head);
+        return getNode(head, visited);
     }
 
-    public Node getNode(Node node) {
+    public Node getNode(Node node, Map<Node, Node> visited) {
         if (node == null) {
             return null;
         }
