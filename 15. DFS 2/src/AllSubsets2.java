@@ -29,6 +29,6 @@ public class AllSubsets2 {
             index++;
         }
         // Case 2: not choose array[index].
-        sb.append(array[index]);
+        helper(array, index + 1, sb, res);
     }
 }
