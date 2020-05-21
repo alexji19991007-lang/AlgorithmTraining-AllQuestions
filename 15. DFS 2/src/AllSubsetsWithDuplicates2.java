@@ -31,6 +31,7 @@ public class AllSubsetsWithDuplicates2 {
         while (index < array.length - 1 && array[index] == array[index + 1]) {
             index++;
         }
+        // Not select the current character
         helper(array, k, sb, index + 1, res);
     }
 }
