@@ -33,23 +33,28 @@ public class AllValidPermutationsOfIfBlocks {
     }
 
     public static void printBlock(char[] solution) {
-        Deque<Character> mStack = new ArrayDeque<>();
+        // size means how many left parentheses we have encountered so far
+        int size = 0;
+        // blankSpaces means how many " " we need to have at the beginning of the line
         int blankSpaces = 0;
         for (char p : solution) {
             if (p == LEFT) {
                 // Each tab = 2 * " "
-                blankSpaces = mStack.size() * 2;
+                blankSpaces = size * 2;
+                // Print the blank spaces
                 for (int i = 0; i < blankSpaces; ++i) {
                     System.out.print(" ");
                 }
                 System.out.println(START);
-                mStack.push(LEFT);
+                size++;
             } else {
+                // Print the blank spaces
                 for (int i = 0; i < blankSpaces; ++i) {
                     System.out.print(" ");
                 }
                 System.out.println(END);
-                mStack.pollFirst();
+                // Remove one tab
+                size--;
                 blankSpaces -= 2;
             }
         }
