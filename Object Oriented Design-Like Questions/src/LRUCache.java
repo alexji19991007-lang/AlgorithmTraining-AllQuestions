@@ -1,12 +1,11 @@
 import java.util.HashMap;
 import java.util.Map;
 
-class LRUCache {
-
+class LRUCache<K, V> {
     // Implement the cache using a doubly linkedList
     class DLinkedNode {
-        int key;
-        int value;
+        K key;
+        V value;
         DLinkedNode prev;
         DLinkedNode next;
     }
@@ -39,7 +38,7 @@ class LRUCache {
     }
 
 
-    private Map<Integer, DLinkedNode> cache = new HashMap<>();
+    private Map<K, DLinkedNode> cache = new HashMap<>();
     private int count; // mSize
     private int capacity; // mCapacity
     // Here we have two dummy nodes, head and tail, such that addition and removal are made easier
@@ -58,17 +57,17 @@ class LRUCache {
         head.next = tail;
     }
 
-    public int get(int key) {
+    public V get(int key) {
         DLinkedNode node = cache.get(key);
         if (node == null) {
-            return -1; // should raise exception here.
+            return null; // should raise exception here.
         }
         // If we successfully read from the table, we should move this node to the head
         this.moveToHead(node);
         return node.value;
     }
 
-    public void put(int key, int value) {
+    public void put(K key, V value) {
         DLinkedNode node = cache.get(key);
         if (node == null) {
             // if doesn't exist, creat new node
