@@ -1,4 +1,5 @@
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 class LRUCache {
 
@@ -38,7 +39,7 @@ class LRUCache {
     }
 
 
-    private Hashtable<Integer, DLinkedNode> cache = new Hashtable<>();
+    private Map<Integer, DLinkedNode> cache = new HashMap<>();
     private int count; // mSize
     private int capacity; // mCapacity
     // Here we have two dummy nodes, head and tail, such that addition and removal are made easier
