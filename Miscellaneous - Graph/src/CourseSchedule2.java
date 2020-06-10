@@ -45,16 +45,16 @@ public class CourseSchedule2 {
         }
         for (int i = 0; i < numCourses && isPossible; ++i) {
             // Pick a vertex, if it's not visited, start DFS on it
-            if (this.color.get(i) == WHITE) {
-                this.dfs(i);
+            if (color.get(i) == WHITE) {
+                dfs(i);
             }
         }
         int[] order;
         // get the possible order
-        if (this.isPossible) {
+        if (isPossible) {
             order = new int[numCourses];
             for (int i = 0; i < numCourses; ++i) {
-                order[i] = this.topoSort.pop();
+                order[i] = topoSort.pop();
             }
         } else {
             order = new int[0];
@@ -65,27 +65,27 @@ public class CourseSchedule2 {
     // Do DFS on one node
     private void dfs(int node) {
         // If we already found a cycle, it is impossible to build a schedule, thus immediately return
-        if (!this.isPossible) {
+        if (!isPossible) {
             return;
         }
         // This node is discovered, but not finished
         this.color.put(node, GRAY);
         // Get the adjacency list of the current node
-        for (Integer neighbor : this.adjList.getOrDefault(node, new ArrayList<>())) {
+        for (Integer neighbor : adjList.getOrDefault(node, new ArrayList<>())) {
             // If this neighbor is not discovered yet, continue DFS on this neighbor
-            if (this.color.get(neighbor) == WHITE) {
-                this.dfs(neighbor);
+            if (color.get(neighbor) == WHITE) {
+                dfs(neighbor);
             }
             // If the neighbor is discovered, but not finished, then we have found a cycle, so no way to find a valid schedule
-            else if (this.color.get(neighbor) == GRAY) {
-                this.isPossible = false;
+            else if (color.get(neighbor) == GRAY) {
+                isPossible = false;
                 return;
             }
             // It is okay if we find a finished node
         }
         // This node is finished, paint it to black
-        this.color.put(node, BLACK);
+        color.put(node, BLACK);
         // push this node onto our stack
-        this.topoSort.push(node);
+        topoSort.push(node);
     }
 }

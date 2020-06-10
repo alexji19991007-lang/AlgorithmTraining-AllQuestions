@@ -23,7 +23,7 @@ public class WordLadder {
         // current word.
         Queue<Pair<String, Integer>> Q = new LinkedList<>();
         Q.add(new Pair<>(beginWord, 1));
-        HashMap<String, Boolean> visited = new HashMap<>();
+        Map<String, Boolean> visited = new HashMap<>();
         visited.put(beginWord, true);
         // Do BFS
         while (!Q.isEmpty()) {
