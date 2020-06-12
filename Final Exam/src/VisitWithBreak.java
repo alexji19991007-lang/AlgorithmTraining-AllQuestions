@@ -2,34 +2,30 @@ import java.util.*;
 
 public class VisitWithBreak {
     public static void main(String[] args) {
-        String input = "ABC";
+        String input = "ABCDE";
         System.out.println(visit(input).toString());
     }
 
     public static List<String> visit(String input) {
         List<String> res = new ArrayList<>();
-        if (input.length() <= 1) {
-            res.add(input);
-            return res;
-        }
         StringBuilder sb = new StringBuilder();
         sb.append(input.charAt(0));
-        visitHelper(res, 1, input, sb);
+        visitHelper(input, 1, sb, res);
         return res;
     }
 
-    public static void visitHelper(List<String> res, int index, String input, StringBuilder sb) {
+    public static void visitHelper(String input, int index, StringBuilder sb, List<String> res) {
+        // Base case
         if (index == input.length()) {
             res.add(sb.toString());
             return;
         }
-        // Not take a break
-        sb.append(input.charAt(index));
-        visitHelper(res, index + 1, input, sb);
-        // Take a break
-        sb.replace(sb.length() - 1, sb.length(), "x" + input.charAt(index));
-        visitHelper(res, index + 1, input, sb);
-        // 吐
+        // Case 1: Not take a break between two visits, i.e. AB...
+        sb.append(input.charAt(index)); // 吃
+        visitHelper(input, index + 1, sb, res);
+        // Case 2: Take a break between two visits, i.e. AxB...
+        sb.replace(sb.length() - 1, sb.length(), "x" + input.charAt(index)); // 吐 + 吃
+        visitHelper(input, index + 1, sb, res);
         sb.delete(sb.length() - 2, sb.length());
     }
 }

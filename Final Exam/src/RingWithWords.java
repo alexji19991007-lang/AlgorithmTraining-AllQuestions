@@ -1,4 +1,4 @@
-public class FormARingWithWords {
+public class RingWithWords {
     public static void main(String[] args) {
         String[] input = {"abc", "efg", "cde", "ghi", "ija"};
         System.out.println(formRing(input));
