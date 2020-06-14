@@ -57,13 +57,13 @@ class LRUCache<K, V> {
         head.next = tail;
     }
 
-    public V get(int key) {
-        DLinkedNode node = cache.get(key);
+    public V get(K key) {
+        DLinkedNode node = cache.getOrDefault(key, null);
         if (node == null) {
             return null; // should raise exception here.
         }
         // If we successfully read from the table, we should move this node to the head
-        this.moveToHead(node);
+        moveToHead(node);
         return node.value;
     }
 
@@ -75,21 +75,21 @@ class LRUCache<K, V> {
             newNode.key = key;
             newNode.value = value;
             // add to map and list, increment mSize
-            this.cache.put(key, newNode);
-            this.addNode(newNode);
+            cache.put(key, newNode);
+            addNode(newNode);
             ++count;
             // is mSize > mCapacity, pop the least recently used one (the one before tail)
             if (count > capacity) {
                 // pop the tail
-                DLinkedNode tail = this.popTail();
+                DLinkedNode tail = popTail();
                 // don't forget to delete the tail from the map
-                this.cache.remove(tail.key);
+                cache.remove(tail.key);
                 --count;
             }
         } else {
             // update the value.
             node.value = value;
-            this.moveToHead(node);
+            moveToHead(node);
         }
     }
 }
