@@ -1,4 +1,3 @@
-import java.lang.instrument.Instrumentation;
 import java.util.*;
 
 public class RemoveAdjacentRepeatedChars4 {

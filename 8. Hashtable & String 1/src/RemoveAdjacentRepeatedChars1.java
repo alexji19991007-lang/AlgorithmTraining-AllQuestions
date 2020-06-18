@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class RemoveAdjacentRepeatedChars1 {
     public String deDup(String input) {
         if (input == null || input.length() <= 1) {
