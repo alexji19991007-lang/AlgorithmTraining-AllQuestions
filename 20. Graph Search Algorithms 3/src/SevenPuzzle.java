@@ -37,6 +37,9 @@ public class SevenPuzzle {
             }
         }
         return boardStep.getOrDefault(new Board(values), -1);
+
+
+
     }
 
     static class Board {
