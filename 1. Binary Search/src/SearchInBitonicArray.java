@@ -4,19 +4,22 @@ public class SearchInBitonicArray {
     public static void main(String[] args) {
         int[] array = {9, 5, 3, 2, -4, -5};
         System.out.println(findPeak(array, 0, array.length - 1) + " " + search(array, -4));
-        int[] array1 = {1, 2, 3, 4, 5, 6};
-        System.out.println(findPeak(array1, 0, array1.length - 1) + " " + search(array1, 1));
+        int[] array1 = {1, 2, 3, 3, 4, 5, 6, 7};
+        System.out.println(findPeak(array1, 0, array1.length - 1) + " " + search(array1, 3));
         int[] array2 = {1, 2, 3, 4, 5, 4, 3, 2};
         System.out.println(findPeak(array2, 0, array2.length - 1) + " " + search(array2, 4));
         int[] array3 = {1, 2, 3, 4, 5, -1, -2, -3, -4};
         System.out.println(findPeak(array3, 0, array3.length - 1) + " " + search(array3, -2));
+        int[] array4 = {1, 2, 3, -1, -1, -1, -2, -3, -4};
+        System.out.println(findPeak(array4, 0, array3.length - 1) + " " + search(array4, 1));
     }
 
     public static int search(int[] array, int target) {
-        int peak = findPeak(array, 0, array.length - 1);
-        if (target > array[peak]) {
+        if (array.length == 0) {
             return -1;
-        } else if (target == array[peak]) {
+        }
+        int peak = findPeak(array, 0, array.length - 1);
+        if (target == array[peak]) {
             return peak;
         } else {
             int temp = ascendingBinarySearch(array, 0, peak - 1, target);
@@ -25,21 +28,29 @@ public class SearchInBitonicArray {
     }
 
     public static int findPeak(int[] array, int left, int right) {
-        // Terminate when left neighbors right
         while (left < right - 1) {
             int mid = left + (right - left) / 2;
-            // If mid element is greater than its two neighboring elements, return mid index
             if (array[mid] > array[mid - 1] && array[mid] > array[mid + 1]) {
                 return mid;
-            } else if (array[mid] < array[mid - 1]) {
-                right = mid;
-                // It is possible that the array is monotonically increasing or decreasing,
-                // so we don't exclude the element immediately
+            }
+            if (array[mid] > array[mid - 1] && array[mid] < array[mid + 1]) {
+                left = mid + 1;
             } else {
-                left = mid;
+                right = mid - 1;
             }
         }
-        return array[left] > array[right] ? left : right;
+        // Monotonically
+        if (right == array.length - 1 && (left == right || array[left] < array[right])) {
+            // increasing
+            return array.length - 1;
+        } else if (left == 0 && (left == right || array[left] > array[right])) {
+            // decreasing
+            return 0;
+        }
+        if (array[left] > array[left - 1] && array[left] > array[left + 1]) {
+            return left;
+        }
+        return right;
     }
 
     public static int ascendingBinarySearch(int[] array, int left, int right, int target) {
