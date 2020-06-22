@@ -9,6 +9,19 @@ public class BestBuyAndSell {
         System.out.println(max + " " + res[0] + " " + res[1]);
     }
 
+    public static int maxProfitBetter(int[] array) {
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (int curPrice : array) {
+            if (curPrice < minPrice) {
+                minPrice = curPrice;
+            } else if (curPrice - minPrice > maxProfit) {
+                maxProfit = curPrice - minPrice;
+            }
+        }
+        return maxProfit;
+    }
+
     public static int maxProfit(int[] prices, int[] res) {
         // We use a hashmap to check for the starting position, i.e. the best buying date
         Map<Integer, Integer> indexMap = new HashMap<>();
