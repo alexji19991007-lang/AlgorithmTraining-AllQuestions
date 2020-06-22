@@ -1,3 +1,5 @@
+package HouseRobber;
+
 public class HouseRobber {
     // f(k) = Largest amount that you can rob from the first k houses.
     // Ai = Amount of money at the ith house.

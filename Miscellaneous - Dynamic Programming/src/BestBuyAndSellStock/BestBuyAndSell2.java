@@ -1,3 +1,5 @@
+package BestBuyAndSellStock;
+
 public class BestBuyAndSell2 {
     public int maxProfit(int[] prices) {
         // 找到每个相邻的valley peak， 相减
@@ -22,7 +24,7 @@ public class BestBuyAndSell2 {
         return maxP;
     }
 
-    public int maxProfitAlternative(int[] prices) {
+    public int maxProfitBetter(int[] prices) {
         // 计算每一笔小交易
         int maxprofit = 0;
         for (int i = 1; i < prices.length; i++) {

@@ -1,3 +1,5 @@
+package HouseRobber;
+
 public class HouseRobber3 {
     public int robTree(TreeNode root) {
         int[] res = robSub(root);

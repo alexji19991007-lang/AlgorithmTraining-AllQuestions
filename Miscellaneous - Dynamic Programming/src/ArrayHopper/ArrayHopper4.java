@@ -1,3 +1,5 @@
+package ArrayHopper;
+
 import java.util.*;
 
 // Given an array A of non-negative integers, you are initially positioned at an arbitrary index of the array. A[i] means
@@ -6,6 +8,7 @@ import java.util.*;
 
 // The given array is not null and has length of at least 1.
 
+// Example:
 // {1, 3, 1, 2, 2}, 2 --> 2 (jump to index 1 then to the right end of array)
 // {4, 0, 1, 0, 0}, 2 --> -1
 public class ArrayHopper4 {
@@ -23,6 +26,7 @@ public class ArrayHopper4 {
         Queue<Integer> queue = new ArrayDeque<>();
         queue.offer(index);
         visited.put(index, 0);
+        // Do BFS. Note that each index will be put into the queue exactly once.
         while (!queue.isEmpty()) {
             int curIndex = queue.poll();
             int curStep = visited.get(curIndex);

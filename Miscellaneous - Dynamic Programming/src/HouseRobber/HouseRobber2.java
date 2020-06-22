@@ -1,3 +1,5 @@
+package HouseRobber;
+
 public class HouseRobber2 {
     public int robCircular(int[] nums) {
         if (nums.length == 0) {
