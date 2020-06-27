@@ -16,7 +16,7 @@ public class BinaryTreeInorderTraversal {
         if (root.left != null) {
             helper(root.left, res);
         }
-        res.add(root.val);
+        res.add(root.key);
         if (root.right != null) {
             helper(root.right, res);
         }
@@ -33,7 +33,7 @@ public class BinaryTreeInorderTraversal {
                 cur = cur.left;
             }
             cur = stack.pop();
-            res.add(cur.val);
+            res.add(cur.key);
             cur = cur.right;
         }
         return res;

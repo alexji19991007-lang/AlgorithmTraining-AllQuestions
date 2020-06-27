@@ -8,6 +8,7 @@ public class KthSmallestWith357AsFactors {
         Set<Long> visited = new HashSet<>();
         minHeap.offer(3 * 5 * 7L);
         visited.add(3 * 5 * 7L);
+        // poll k - 1 times
         while (k > 1) {
             long current = minHeap.poll();
             if (visited.add(3 * current)) {
@@ -21,6 +22,7 @@ public class KthSmallestWith357AsFactors {
             }
             k--;
         }
+        // poll the last time
         return minHeap.peek();
     }
 }

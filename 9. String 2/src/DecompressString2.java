@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class DecompressString2 {
     public String decompress(String input) {
         if (input.length() == 0) {

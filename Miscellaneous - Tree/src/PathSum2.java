@@ -16,12 +16,12 @@ public class PathSum2 {
         if (node == null) {
             return;
         }
-        pathNodes.add(node.val);
-        if (remain == node.val && node.left == null && node.right == null) {
+        pathNodes.add(node.key);
+        if (remain == node.key && node.left == null && node.right == null) {
             pathList.add(new ArrayList<>(pathNodes));
         } else {
-            recurseTree(node.left, remain - node.val);
-            recurseTree(node.right, remain - node.val);
+            recurseTree(node.left, remain - node.key);
+            recurseTree(node.right, remain - node.key);
         }
         pathNodes.remove(pathNodes.size() - 1);
     }

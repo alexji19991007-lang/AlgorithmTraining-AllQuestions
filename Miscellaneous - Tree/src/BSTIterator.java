@@ -22,7 +22,7 @@ class BSTIterator {
         if (top.right != null) {
             this._leftMostInorder(top.right);
         }
-        return top.val;
+        return top.key;
     }
 
     /** @return whether we have a next smallest number */

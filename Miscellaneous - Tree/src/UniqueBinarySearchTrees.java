@@ -12,6 +12,9 @@ public class UniqueBinarySearchTrees {
     *       = Sum(from i = 1 to i = n)(G(i - 1) * G(n - i))
     */
     public int numTrees(int n) {
+        if (n == 0) {
+            return 1;
+        }
         int[] G = new int[n + 1];
         G[0] = G[1] = 1;
         for (int i = 2; i <= n; ++i) {

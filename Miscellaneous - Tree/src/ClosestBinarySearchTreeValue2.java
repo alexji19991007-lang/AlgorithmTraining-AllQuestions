@@ -23,14 +23,14 @@ public class ClosestBinarySearchTreeValue2 {
             // Case 2: if n3 is not closer to target than n1, there is no need to do further searches
             //         because n3 > n1 and any number coming after n3 will only be bigger than n3,
             //         so there is no way for the following numbers to be closer to the target
-            if (Math.abs(root.val - target) < Math.abs(res.peekFirst() - target)) {
+            if (Math.abs(root.key - target) < Math.abs(res.peekFirst() - target)) {
                 res.removeFirst();
             } else {
                 return;
             }
         }
         // add the current node's value
-        res.add(root.val);
+        res.add(root.key);
         // search right
         helper(res, root.right, target, k);
     }

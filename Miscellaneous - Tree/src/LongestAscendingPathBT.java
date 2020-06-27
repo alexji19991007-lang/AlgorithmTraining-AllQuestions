@@ -3,7 +3,7 @@ public class LongestAscendingPathBT {
         if (root == null) {
             return 0;
         }
-        return helper(root, 0, root.val);
+        return helper(root, 0, root.key);
     }
 
     public int helper(TreeNode root, int len, int lastVal) {
@@ -11,15 +11,15 @@ public class LongestAscendingPathBT {
             return 0;
         }
         // If current node's value is greater than it's parent's value, we can increment the count
-        if (root.val > lastVal) {
+        if (root.key > lastVal) {
             len++;
         } else {
             // Otherwise, the original ascending path can no longer continue at this node, so a new
             // ascending path will start counting from the current node.
             len = 1;
         }
-        int leftMaxLength = helper(root.left, len, root.val);
-        int rightMaxLength = helper(root.right, len, root.val);
+        int leftMaxLength = helper(root.left, len, root.key);
+        int rightMaxLength = helper(root.right, len, root.key);
         // The return value is the longest ascending path
         return Math.max(len, Math.max(leftMaxLength, rightMaxLength));
     }
@@ -31,7 +31,7 @@ public class LongestAscendingPathBT {
         }
         // Take the max as a global variable.
         int[] max = new int[1];
-        helper1(root, 0, root.val, max);
+        helper1(root, 0, root.key, max);
         return max[0];
     }
 
@@ -39,13 +39,13 @@ public class LongestAscendingPathBT {
         if (root == null) {
             return;
         }
-        if (root.val > lastVal) {
+        if (root.key > lastVal) {
             len++;
         } else {
             len = 1;
         }
         max[0] = Math.max(max[0], len);
-        helper(root.left, len, root.val);
-        helper(root.right, len, root.val);
+        helper(root.left, len, root.key);
+        helper(root.right, len, root.key);
     }
 }

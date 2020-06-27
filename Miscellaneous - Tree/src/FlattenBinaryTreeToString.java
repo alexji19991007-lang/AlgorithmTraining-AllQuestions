@@ -8,7 +8,7 @@ public class FlattenBinaryTreeToString {
         if (root == null) {
             return str;
         }
-        str += root.val;
+        str += root.key;
         if (root.left == null && root.right == null) {
             return str;
         }

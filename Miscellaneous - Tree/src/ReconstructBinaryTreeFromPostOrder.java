@@ -15,7 +15,7 @@ public class ReconstructBinaryTreeFromPostOrder {
             return null;
         }
         TreeNode root = new TreeNode(postorder[index[0]--]);
-        root.right = helper(postorder, index, root.val);
+        root.right = helper(postorder, index, root.key);
         root.left = helper(postorder, index, min);
         return root;
     }

@@ -10,6 +10,6 @@ public class SymmetricTree {
         if (root1 == null || root2 == null) {
             return false;
         }
-        return root1.val == root2.val && isMirror(root1.left, root2.right) && isMirror(root1.right, root2.left);
+        return root1.key == root2.key && isMirror(root1.left, root2.right) && isMirror(root1.right, root2.left);
     }
 }

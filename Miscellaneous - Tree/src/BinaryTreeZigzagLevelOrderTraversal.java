@@ -15,9 +15,9 @@ public class BinaryTreeZigzagLevelOrderTraversal {
             for (int i = 0; i < size; ++i) {
                 TreeNode cur = q.poll();
                 if (leftToRight) {
-                    curLevel.offerLast(cur.val);
+                    curLevel.offerLast(cur.key);
                 } else {
-                    curLevel.offerFirst(cur.val);
+                    curLevel.offerFirst(cur.key);
                 }
                 if (cur.left != null) {
                     q.offer(cur.left);

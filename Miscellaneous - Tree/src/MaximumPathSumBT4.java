@@ -10,14 +10,14 @@ public class MaximumPathSumBT4 {
 
     public void maxGain(TreeNode root, int[] maxSum, int curSum) {
         if (root.left == null && root.right == null) {
-            maxSum[0] = Math.max(maxSum[0], curSum + root.val);
+            maxSum[0] = Math.max(maxSum[0], curSum + root.key);
             return;
         }
         if (root.left != null) {
-            maxGain(root.left, maxSum, curSum + root.val);
+            maxGain(root.left, maxSum, curSum + root.key);
         }
         if (root.right != null) {
-            maxGain(root.right, maxSum, curSum + root.val);
+            maxGain(root.right, maxSum, curSum + root.key);
         }
     }
 }

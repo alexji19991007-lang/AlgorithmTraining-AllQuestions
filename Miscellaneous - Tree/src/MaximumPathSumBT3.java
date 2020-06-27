@@ -21,7 +21,7 @@ public class MaximumPathSumBT3 {
         int rightGain = Math.max(maxGain(node.right, maxSum), 0);
         // Since the path should start and end at the same path, we can only choose one path.
         // Thus, we choose the path that gives us the max gain.
-        int curSum = node.val + Math.max(leftGain, rightGain);
+        int curSum = node.key + Math.max(leftGain, rightGain);
         // Update the final solution if needed.
         maxSum[0] = Math.max(maxSum[0], curSum);
         // Return this level's solution to the previous level.

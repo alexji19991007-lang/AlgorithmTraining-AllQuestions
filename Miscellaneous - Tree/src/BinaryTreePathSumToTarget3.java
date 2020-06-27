@@ -8,15 +8,15 @@ public class BinaryTreePathSumToTarget3 {
         if (root == null) {
             return res;
         }
-        if (sum == root.val) {
+        if (sum == root.key) {
             res++;
         }
         // exclude root
         res += pathSum(root.left, sum);
         res += pathSum(root.right, sum);
         // include root
-        res += pathSum(root.left, sum - root.val);
-        res += pathSum(root.right, sum - root.val);
+        res += pathSum(root.left, sum - root.key);
+        res += pathSum(root.right, sum - root.key);
         return res;
     }
 
@@ -34,7 +34,7 @@ public class BinaryTreePathSumToTarget3 {
             return 0;
         }
         // update the prefix sum by adding the current val
-        curSum += node.val;
+        curSum += node.key;
         // get the number of valid path, ended by the current node
         int res = map.getOrDefault(curSum - target, 0);
         // update the map with the current sum, so the map is good to be passed to the next recursion

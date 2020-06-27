@@ -80,7 +80,7 @@ public class PlaceToPutChair1 {
         if (x + 1 < m && OB != gym[x + 1][y]) {
             neighbors.add(new Pair(x + 1, y));
         }
-        if (y + 1 < m && OB != gym[x][y + 1]) {
+        if (y + 1 < n && OB != gym[x][y + 1]) {
             neighbors.add(new Pair(x, y + 1));
         }
         if (x - 1 >= 0 && OB != gym[x - 1][y]) {

@@ -19,9 +19,9 @@ public class MaximumPathSumBT2 {
         int rightGain = Math.max(maxGain(node.right, maxSum), 0);
         // If we want both the leftGain and rightGain, then we have to make a new path including
         // the current node
-        int priceNewPath = node.val + leftGain + rightGain;
+        int priceNewPath = node.key + leftGain + rightGain;
         maxSum[0] = Math.max(maxSum[0], priceNewPath);
         // If we only take one of the two subtrees' gains
-        return node.val + Math.max(leftGain, rightGain);
+        return node.key + Math.max(leftGain, rightGain);
     }
 }

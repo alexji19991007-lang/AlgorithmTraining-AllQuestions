@@ -25,7 +25,7 @@ public class BinaryTreeRightSideView {
                 // IMPORTANT NOTE: Only the first node that we encounter at a particular depth
                 // contains the correct right-view value
                 if (!rightmostValueAtDepth.containsKey(depth)) {
-                    rightmostValueAtDepth.put(depth, node.val);
+                    rightmostValueAtDepth.put(depth, node.key);
                 }
                 // Why we first push left then right?
                 // Because we always want to look at the right side of the tree first, so push it

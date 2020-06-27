@@ -1,6 +1,6 @@
 class TreeNode {
-    int val;
+    int key;
     TreeNode left;
     TreeNode right;
-    TreeNode(int x) { val = x; }
+    TreeNode(int x) { key = x; }
 }

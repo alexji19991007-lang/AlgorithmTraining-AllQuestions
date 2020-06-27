@@ -24,7 +24,7 @@ public class ReconstructBinaryTreeFromLevelOrderAndInorder {
         List<Integer> left = new ArrayList<>();
         List<Integer> right = new ArrayList<>();
         for (int num : levelList) {
-            if (inMap.get(num) < inMap.get(root.val)) {
+            if (inMap.get(num) < inMap.get(root.key)) {
                 left.add(num);
             } else {
                 right.add(num);

@@ -14,7 +14,7 @@ public class BinaryTreePaths {
             return;
         }
         int curLen = sb.length();
-        sb.append(root.val);
+        sb.append(root.key);
         if (root.left == null && root.right == null) {
             res.add(sb.toString());
         } else {
