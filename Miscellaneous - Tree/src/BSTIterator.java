@@ -1,26 +1,27 @@
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 class BSTIterator {
-    Stack<TreeNode> stack;
+    Deque<TreeNode> stack;
 
     public BSTIterator(TreeNode root) {
-        this.stack = new Stack<>();
+        this.stack = new ArrayDeque<>();
         // go left till no more left
-        this._leftMostInorder(root);
+        this.leftMostInorder(root);
     }
 
-    private void _leftMostInorder(TreeNode root) {
+    private void leftMostInorder(TreeNode root) {
         while (root != null) {
-            this.stack.push(root);
+            this.stack.offerFirst(root);
             root = root.left;
         }
     }
 
     /** @return the next smallest number */
     public int next() {
-        TreeNode top = this.stack.pop();
+        TreeNode top = this.stack.pollFirst();
         if (top.right != null) {
-            this._leftMostInorder(top.right);
+            this.leftMostInorder(top.right);
         }
         return top.key;
     }

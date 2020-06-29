@@ -1,6 +1,6 @@
 public class testing {
     public static void main(String[] args) {
-        int a = 1;
-        System.out.println((char)(a + '0'));
+        int mask = 0xf;
+        System.out.println(mask);
     }
 }
