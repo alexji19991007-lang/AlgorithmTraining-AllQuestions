@@ -1,6 +1,6 @@
 // Lazy Initialization
 public class Singleton1 {
-    private static volatile Singleton1 INSTANCE = null;
+    private volatile static Singleton1 INSTANCE = null;
 
     private String msg;
 
