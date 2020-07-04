@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class CheckIfBinaryTreeIsBalanced {
     public boolean isBalanced(TreeNode root) {
         if (root == null) {

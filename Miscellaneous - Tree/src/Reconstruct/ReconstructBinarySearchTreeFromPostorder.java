@@ -1,4 +1,6 @@
-public class ReconstructBinaryTreeFromPostOrder {
+package Reconstruct;
+
+public class ReconstructBinarySearchTreeFromPostorder {
     public static void main(String[] args) {
         int[] post = {1, 4, 3, 11, 8, 5};
         TreeNode x = reconstruct(post);
