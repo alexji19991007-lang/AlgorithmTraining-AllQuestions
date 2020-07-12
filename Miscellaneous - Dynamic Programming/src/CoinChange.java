@@ -1,7 +1,7 @@
 public class CoinChange {
     public static void main(String[] args) {
-        int[] coins = {2, 3, 5};
-        int amount = 11;
+        int[] coins = {5};
+        int amount = 10;
         System.out.println(coinChange(coins, amount));
     }
 

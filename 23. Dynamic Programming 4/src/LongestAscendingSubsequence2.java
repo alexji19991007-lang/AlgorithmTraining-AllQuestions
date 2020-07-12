@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Arrays;
 
 public class LongestAscendingSubsequence2 {
     public static void main(String[] args) {
@@ -46,13 +46,6 @@ public class LongestAscendingSubsequence2 {
                 longestIndex = i;
             }
         }
-//        res[--longest] = array[longestIndex];
-//        for (int i = longestIndex - 1; i >= 0 && longest > 0; --i) {
-//            if (M[i] == longest && array[i] < array[longestIndex]) {
-//                res[--longest] = array[i];
-//                longestIndex = i;
-//            }
-//        }
         return res;
     }
 
