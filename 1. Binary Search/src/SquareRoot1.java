@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class SquareRoot1 {
     public static void main(String[] args) {
         System.out.println(sqrt(744348785));
