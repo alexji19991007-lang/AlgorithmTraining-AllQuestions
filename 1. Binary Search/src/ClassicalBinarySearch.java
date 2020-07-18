@@ -1,4 +1,6 @@
 public class ClassicalBinarySearch {
+    // TC: O(logn)
+    // SC: O(1)
     public int binarySearch(int[] array, int target) {
         if (array.length == 0) {
             return -1;
