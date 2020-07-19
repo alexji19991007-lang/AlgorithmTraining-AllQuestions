@@ -1,9 +1,10 @@
 public class AddOne {
     public static void main(String[] args) {
-        String orig = "0";
-        System.out.println(incrementOne(orig));
+        String orig = "979";
+        System.out.println(addOne(orig));
     }
 
+    // String Version
     public static String incrementOne(String num) {
         StringBuilder sb = new StringBuilder();
         int carry = 1; // The number to be added
@@ -21,5 +22,39 @@ public class AddOne {
         // Since we are always appending new chars to the StringBuilder, we have to reverse it in order to get the
         // final solution.
         return sb.reverse().toString();
+    }
+
+    // String Version -- Better
+    public static String addOne(String num) {
+        int n = num.length();
+        char[] array = num.toCharArray();
+        for (int i = n - 1; i >= 0; --i) {
+            int curVal = array[i] - '0';
+            if (curVal == 9) {
+                array[i] = '0';
+            } else {
+                array[i] = (char)(array[i] + 1);
+                return new String(array);
+            }
+        }
+        // Case where we need to put an extra 1 to the left of the original array
+        return "1" + new String(array);
+    }
+
+    // Array Version
+    public static int[] plusOne(int[] digits) {
+        int n = digits.length;
+        for (int i = n - 1; i >= 0; --i) {
+            if (digits[i] == 9) {
+                digits[i] = 0;
+            } else {
+                digits[i]++;
+                return digits;
+            }
+        }
+        // Case where we need to put an extra 1 to the left of the original array
+        digits = new int[n + 1];
+        digits[0] = 1;
+        return digits;
     }
 }
