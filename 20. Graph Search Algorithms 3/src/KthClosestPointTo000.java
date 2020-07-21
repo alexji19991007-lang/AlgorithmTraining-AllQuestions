@@ -2,16 +2,13 @@ import java.util.*;
 
 public class KthClosestPointTo000 {
     public List<Integer> closest(int[] a, int[] b, int[] c, int k) {
-        PriorityQueue<List<Integer>> minHeap = new PriorityQueue<>(2 * k, new Comparator<List<Integer>>() {
-            @Override
-            public int compare(List<Integer> o1, List<Integer> o2) {
-                long d1 = distance(o1, a, b, c);
-                long d2 = distance(o2, a, b, c);
-                if (d1 == d2) {
-                    return 0;
-                }
-                return d1 < d2 ? -1 : 1;
+        PriorityQueue<List<Integer>> minHeap = new PriorityQueue<>(2 * k, (o1, o2) -> {
+            long d1 = distance(o1, a, b, c);
+            long d2 = distance(o2, a, b, c);
+            if (d1 == d2) {
+                return 0;
             }
+            return d1 < d2 ? -1 : 1;
         });
         Set<List<Integer>> visited = new HashSet<>();
         // <0, 0, 0> means picking the first element from array a, b, c, i.e. the element

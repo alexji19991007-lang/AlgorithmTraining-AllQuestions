@@ -25,7 +25,7 @@ public class SubarraySumEqualsK {
             // this (sum - k) to this occurrence, the sum of the subarrary equals k.
             if (sumCount.containsKey(sum - k)) {
                 // We have to increment the count by sumCount.get(sum - k) because if we already
-                // have two ways to reach (sum -k), then we will have two numbers from which to the
+                // have two ways to reach (sum - k), then we will have two numbers from which to the
                 // current number have a subarray sum equal to k
                 count += sumCount.get(sum - k);
             }

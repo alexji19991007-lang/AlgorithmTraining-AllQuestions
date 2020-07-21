@@ -1,7 +1,8 @@
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class MergeKSortedLists {
+// LeetCode 23
+public class F111_MergeKSortedLists {
     // TC: O(nlogk), the comparison cost will be reduced to O(logk) for every pop & insert.
     //     but finding the smallest value takes only O(1). In total N nodes in the final list.
     // SC: O(n + k) = O(n) since k should be far smaller than n, create a final list of size n,

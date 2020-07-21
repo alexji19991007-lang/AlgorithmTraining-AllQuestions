@@ -7,7 +7,7 @@ public class LargestSubmatrixSum {
         for (int i = 0; i < R; ++i) {
             int[] cur = new int[C];
             for (int j = i; j < R; ++j) {
-                // Do prefix sum for columns
+                // Do prefix sum for rows
                 add(cur, matrix[j]);
                 // Update result
                 res = Math.max(res, max(cur));
