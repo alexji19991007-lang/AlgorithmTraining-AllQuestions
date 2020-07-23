@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GeneralizedReservoirSampling {
     private final int k;
     private int count;
     private List<Integer> sample;
+    private Random rand;
 
     public GeneralizedReservoirSampling(int k) {
         if (k <= 0) {
@@ -12,7 +14,8 @@ public class GeneralizedReservoirSampling {
         }
         this.k = k;
         this.count = 0;
-        sample = new ArrayList<>();
+        this.sample = new ArrayList<>();
+        this.rand = new Random();
     }
 
     public void read(int value) {
@@ -20,7 +23,7 @@ public class GeneralizedReservoirSampling {
         if (count <= k) {
             sample.add(value);
         } else {
-            int random = (int)(Math.random() * count);
+            int random = rand.nextInt(count);
             if (random < k) {
                 sample.set(random, value);
             }

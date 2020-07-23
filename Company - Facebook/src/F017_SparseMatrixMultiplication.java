@@ -1,4 +1,9 @@
+// LeetCode 311
+
+// Assume the number of A's column is the same as that of B's row
 public class F017_SparseMatrixMultiplication {
+    // TC: O(Ma * Na * Nb) where M means # rows, and N means # cols
+    // SC: O(Na * Nb)
     public int[][] multiply(int[][] A, int[][] B) {
         int aRow = A.length, aCol = A[0].length, bCol = B[0].length;
         int[][] res = new int[aRow][bCol];
