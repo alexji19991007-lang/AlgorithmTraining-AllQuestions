@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/1. Binary Search/1. Binary Search.iml" filepath="$PROJECT_DIR$/1. Binary Search/1. Binary Search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/01. Binary Search/01. Binary Search.iml" filepath="$PROJECT_DIR$/01. Binary Search/01. Binary Search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02. Recursion 1 &amp; Sorting Algorithms/02. Recursion 1 &amp; Sorting Algorithms.iml" filepath="$PROJECT_DIR$/02. Recursion 1 &amp; Sorting Algorithms/02. Recursion 1 &amp; Sorting Algorithms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03. LinkedList/03. LinkedList.iml" filepath="$PROJECT_DIR$/03. LinkedList/03. LinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04. Queue &amp; Stack/04. Queue &amp; Stack.iml" filepath="$PROJECT_DIR$/04. Queue &amp; Stack/04. Queue &amp; Stack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05. Binary Tree &amp; Binary Search Tree/05. Binary Tree &amp; Binary Search Tree.iml" filepath="$PROJECT_DIR$/05. Binary Tree &amp; Binary Search Tree/05. Binary Tree &amp; Binary Search Tree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/06. Heap &amp; Graph Search 1(BFS)/06. Heap &amp; Graph Search 1(BFS).iml" filepath="$PROJECT_DIR$/06. Heap &amp; Graph Search 1(BFS)/06. Heap &amp; Graph Search 1(BFS).iml" />
+      <module fileurl="file://$PROJECT_DIR$/07. Graph Search 2(DFS)/07. Graph Search 2(DFS).iml" filepath="$PROJECT_DIR$/07. Graph Search 2(DFS)/07. Graph Search 2(DFS).iml" />
+      <module fileurl="file://$PROJECT_DIR$/08. Hashtable &amp; String 1/08. Hashtable &amp; String 1.iml" filepath="$PROJECT_DIR$/08. Hashtable &amp; String 1/08. Hashtable &amp; String 1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/09. String 2/09. String 2.iml" filepath="$PROJECT_DIR$/09. String 2/09. String 2.iml" />
       <module fileurl="file://$PROJECT_DIR$/10. Bit Representation &amp; Operation/10. Bit Representation &amp; Operation.iml" filepath="$PROJECT_DIR$/10. Bit Representation &amp; Operation/10. Bit Representation &amp; Operation.iml" />
       <module fileurl="file://$PROJECT_DIR$/11./11..iml" filepath="$PROJECT_DIR$/11./11..iml" />
       <module fileurl="file://$PROJECT_DIR$/11. Recursion 2/11. Recursion 2.iml" filepath="$PROJECT_DIR$/11. Recursion 2/11. Recursion 2.iml" />
@@ -14,19 +22,11 @@
       <module fileurl="file://$PROJECT_DIR$/17. Cross-Training 2/17. Cross-Training 2.iml" filepath="$PROJECT_DIR$/17. Cross-Training 2/17. Cross-Training 2.iml" />
       <module fileurl="file://$PROJECT_DIR$/18. Recursion 3/18. Recursion 3.iml" filepath="$PROJECT_DIR$/18. Recursion 3/18. Recursion 3.iml" />
       <module fileurl="file://$PROJECT_DIR$/19. Cross-Training 3/19. Cross-Training 3.iml" filepath="$PROJECT_DIR$/19. Cross-Training 3/19. Cross-Training 3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/2. Recursion 1 &amp; Sorting Algorithms/2. Recursion 1 &amp; Sorting Algorithms.iml" filepath="$PROJECT_DIR$/2. Recursion 1 &amp; Sorting Algorithms/2. Recursion 1 &amp; Sorting Algorithms.iml" />
       <module fileurl="file://$PROJECT_DIR$/20. Graph Search Algorithms 3/20. Graph Search Algorithms 3.iml" filepath="$PROJECT_DIR$/20. Graph Search Algorithms 3/20. Graph Search Algorithms 3.iml" />
       <module fileurl="file://$PROJECT_DIR$/21. Cross-Training 4/21. Cross-Training 4.iml" filepath="$PROJECT_DIR$/21. Cross-Training 4/21. Cross-Training 4.iml" />
       <module fileurl="file://$PROJECT_DIR$/22. Trie/22. Trie.iml" filepath="$PROJECT_DIR$/22. Trie/22. Trie.iml" />
       <module fileurl="file://$PROJECT_DIR$/23. Dynamic Programming 4/23. Dynamic Programming 4.iml" filepath="$PROJECT_DIR$/23. Dynamic Programming 4/23. Dynamic Programming 4.iml" />
       <module fileurl="file://$PROJECT_DIR$/24. Probability, Sampling &amp; Randomization/24. Probability, Sampling &amp; Randomization.iml" filepath="$PROJECT_DIR$/24. Probability, Sampling &amp; Randomization/24. Probability, Sampling &amp; Randomization.iml" />
-      <module fileurl="file://$PROJECT_DIR$/3. LinkedList/3. LinkedList.iml" filepath="$PROJECT_DIR$/3. LinkedList/3. LinkedList.iml" />
-      <module fileurl="file://$PROJECT_DIR$/4. Queue &amp; Stack/4. Queue &amp; Stack.iml" filepath="$PROJECT_DIR$/4. Queue &amp; Stack/4. Queue &amp; Stack.iml" />
-      <module fileurl="file://$PROJECT_DIR$/5. Binary Tree &amp; Binary Search Tree/5. Binary Tree &amp; Binary Search Tree.iml" filepath="$PROJECT_DIR$/5. Binary Tree &amp; Binary Search Tree/5. Binary Tree &amp; Binary Search Tree.iml" />
-      <module fileurl="file://$PROJECT_DIR$/6. Heap &amp; Graph Search 1(BFS)/6. Heap &amp; Graph Search 1(BFS).iml" filepath="$PROJECT_DIR$/6. Heap &amp; Graph Search 1(BFS)/6. Heap &amp; Graph Search 1(BFS).iml" />
-      <module fileurl="file://$PROJECT_DIR$/7. Graph Search 2(DFS)/7. Graph Search 2(DFS).iml" filepath="$PROJECT_DIR$/7. Graph Search 2(DFS)/7. Graph Search 2(DFS).iml" />
-      <module fileurl="file://$PROJECT_DIR$/8. Hashtable &amp; String 1/8. Hashtable &amp; String 1.iml" filepath="$PROJECT_DIR$/8. Hashtable &amp; String 1/8. Hashtable &amp; String 1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/9. String 2/9. String 2.iml" filepath="$PROJECT_DIR$/9. String 2/9. String 2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Algorithm Class Training Plan.iml" filepath="$PROJECT_DIR$/Algorithm Class Training Plan.iml" />
       <module fileurl="file://$PROJECT_DIR$/Company - Facebook/Company - Facebook.iml" filepath="$PROJECT_DIR$/Company - Facebook/Company - Facebook.iml" />
       <module fileurl="file://$PROJECT_DIR$/Final Exam/Final Exam.iml" filepath="$PROJECT_DIR$/Final Exam/Final Exam.iml" />
