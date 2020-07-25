@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 
 // LeetCode 56
-public class F111_MergeIntervals {
+public class F032_MergeIntervals {
     // TC: O(nlogn)
     // SC: O(n)
     public static int[][] merge(int[][] intervals) {
