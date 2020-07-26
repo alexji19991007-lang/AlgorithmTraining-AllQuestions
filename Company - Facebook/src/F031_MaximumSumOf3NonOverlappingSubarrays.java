@@ -40,6 +40,7 @@ public class F031_MaximumSumOf3NonOverlappingSubarrays {
         total = sum[n] - sum[n - k];
         for (int i = n - k - 1; i >= 2 * k; --i) {
             int curTotal = sum[i + k] - sum[i];
+            // notice it should be >= here since we are always choose the left one if possible
             if (curTotal >= total) {
                 posRight[i] = i;
                 total = curTotal;
