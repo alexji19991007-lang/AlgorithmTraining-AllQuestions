@@ -1,9 +1,10 @@
+// LeetCode 117
 public class PopulatingNextRightPointersInEachNode2 {
     // 1            1
     //            /   \
     // 2         2     3
     //          /     / \
-    // 3       4      5  6
+    // 3       4     5   6
     public Node connect(Node root) {
         if (root == null) {
             return null;
