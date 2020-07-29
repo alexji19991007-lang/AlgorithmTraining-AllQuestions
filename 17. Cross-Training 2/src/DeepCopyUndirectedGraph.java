@@ -33,7 +33,6 @@ public class DeepCopyUndirectedGraph {
                     oldToNew.put(oldNeighborNode, newNeighborNode);
                     q.offer(oldNeighborNode);
                 }
-                // newNode = oldToNew.get(oldNode)
                 oldToNew.get(oldNode).neighbors.add(newNeighborNode);
             }
         }

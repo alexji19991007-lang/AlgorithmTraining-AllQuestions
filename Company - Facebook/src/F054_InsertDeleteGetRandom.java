@@ -1,12 +1,12 @@
 import java.util.*;
 
-public class RandomizedSet {
+public class F054_InsertDeleteGetRandom {
     Map<Integer, Integer> dict;
     List<Integer> list;
     Random rand;
 
     /** Initialize your data structure here. */
-    public RandomizedSet() {
+    public F054_InsertDeleteGetRandom() {
         dict = new HashMap<>();
         list = new ArrayList<>();
         rand = new Random();

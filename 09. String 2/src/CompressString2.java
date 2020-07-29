@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class CompressString2 {
     public String compress(String input) {
         if (input.length() == 0) {
@@ -65,5 +63,4 @@ public class CompressString2 {
         }
         return len;
     }
-
 }

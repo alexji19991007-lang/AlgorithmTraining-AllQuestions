@@ -1,3 +1,5 @@
+// LeetCode 1163
+// Maximum Substring
 public class LastSubstringInLexicographicalOrder {
     public String lastSubstring(String s) {
         int n = s.length();
