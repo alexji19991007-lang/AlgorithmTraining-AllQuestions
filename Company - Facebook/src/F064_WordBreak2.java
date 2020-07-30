@@ -1,19 +1,13 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class WordBreak2 {
-    public static void main(String[] args) {
-        String s = "catsanddog";
-        List<String> wordDict = new ArrayList<>();
-        wordDict.add("cat");
-        wordDict.add("cats");
-        wordDict.add("and");
-        wordDict.add("sand");
-        wordDict.add("dog");
-        List<String> ans = wordBreak(s, wordDict);
-        System.out.println(ans.toString());
-    }
-
-    public static List<String> wordBreak(String s, List<String> wordDict) {
+// LeetCode 140
+public class F064_WordBreak2 {
+    // TC:
+    // SC:
+    public List<String> wordBreak(String s, List<String> wordDict) {
         return DFS(s, wordDict, new HashMap<>());
     }
 
@@ -21,13 +15,13 @@ public class WordBreak2 {
     // We use a hash map here to store different ways of breaking a string s.
     // For example, if we have a string s = "catsand", then its paired value, which is a linked
     // list, will be ["cat sand", "cats and"]
-    private static List<String> DFS(String s, List<String> wordDict, Map<String, List<String>> map) {
+    private List<String> DFS(String s, List<String> wordDict, Map<String, List<String>> map) {
         // If our map already contains 's' as a key, we immediately get its paired linked list. No
         // more DFS is needed.
         if (map.containsKey(s)) {
             return map.get(s);
         }
-        // The list "res" will contain all possible ways of decoding a given string "s"
+        // The linked list "res" will contain all possible ways of decoding a given string "s"
         List<String> res = new ArrayList<>();
         // if the current string is empty, add it and immediately return
         if (s.length() == 0) {
@@ -44,7 +38,7 @@ public class WordBreak2 {
                 // Now the sublist will contain all possible ways of breaking the remaining string,
                 // all we have to do is to add our current word in the front, plus an empty space " "
                 for (String sub : sublist) {
-                    res.add(word + (sub.isEmpty() ? "" : " ") + sub);
+                    res.add(word + (sub.length() == 0 ? "" : " ") + sub);
                 }
             }
         }
