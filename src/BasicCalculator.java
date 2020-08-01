@@ -25,7 +25,6 @@ public class BasicCalculator {
             // If we encounter a digit, read that digit until we read the whole number
             if (Character.isDigit(cur)) {
                 num = num * 10 + Character.getNumericValue(cur);
-                continue;
             }
             // if we are reading an operator
             if (!Character.isDigit(cur) || i == n - 1) {
