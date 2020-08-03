@@ -22,6 +22,7 @@ public class F036_ExpressionAddOperators {
             return;
         }
         for (int i = index; i < num.length(); ++i) {
+            // 如果i不在起始点，并且起始点数字为0，直接停止（不能有0xxx...这样的数字）
             if (i != index && num.charAt(index) == '0') {
                 break;
             }

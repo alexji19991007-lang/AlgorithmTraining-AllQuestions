@@ -5,6 +5,12 @@ import java.util.Map;
 
 // LeetCode 249
 public class F040_GroupShiftedStrings {
+    public static void main(String[] args) {
+        String[] strings = new String[]{"abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"};
+        F040_GroupShiftedStrings test = new F040_GroupShiftedStrings();
+        System.out.println(test.groupStrings(strings).toString());
+    }
+
     // TC: O(n * s) where s is the length of the longest string
     // SC: O(n + s)
     public List<List<String>> groupStrings(String[] strings) {
@@ -19,7 +25,7 @@ public class F040_GroupShiftedStrings {
             for (int i = 0; i < cur.length(); ++i) {
                 int c = cur.charAt(i) - offset;
                 c = c < 'a' ? c + 26 : c;
-                sb.append(c);
+                sb.append((char)c);
             }
             String key = sb.toString();
             if (!map.containsKey(key)) {

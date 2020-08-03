@@ -12,7 +12,7 @@ public class F029_LongestSubstringWithAtMostKDistinctCharacters {
         int n = s.length();
         Map<Character, Integer> count = new HashMap<>();
         // set up the sliding window
-        int start = 0, end = 0;
+        int start = 0;
         int maxSize = 1;
         count.put(s.charAt(0), 1);
         for (int i = 1; i < n; ++i) {

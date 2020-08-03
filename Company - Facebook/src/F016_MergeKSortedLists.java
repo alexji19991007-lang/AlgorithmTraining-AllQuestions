@@ -21,14 +21,14 @@ public class F016_MergeKSortedLists {
         ListNode ptr = dummy;
         for (ListNode x : listOfLists) {
             if (x != null) {
-                heap.add(x);
+                heap.offer(x);
             }
         }
         while (!heap.isEmpty()) {
             ptr.next = heap.poll();
             ptr = ptr.next;
             if (ptr.next != null) {
-                heap.add(ptr.next);
+                heap.offer(ptr.next);
             }
         }
         return dummy.next;
