@@ -14,9 +14,9 @@ public class F004_SubarraySumEqualsK {
         int count = 0, preSum = 0;
         Map<Integer, Integer> sumCount = new HashMap<>();
         sumCount.put(0, 1);
-        for (int i = 0; i < nums.length; ++i) {
+        for (int num : nums) {
             // calculate prefix sum
-            preSum += nums[i];
+            preSum += num;
             // If we have met this (preSum - k) before, then it means from the last occurrence of
             // this (preSum - k) to this occurrence, the sum of the subarrary equals k.
             if (sumCount.containsKey(preSum - k)) {
