@@ -16,18 +16,18 @@ public class RestoreArray {
         for (int[] pair : pairs) {
             Node x = nodeMap.getOrDefault(pair[0], new Node(pair[0], null, null));
             Node y = nodeMap.getOrDefault(pair[1], new Node(pair[1], null, null));
-            if (x.left == null && y.right == null) {
-                x.left = y;
-                y.right = x;
-            } else if (x.right == null && y.left == null) {
+            if (x.right == null && y.left == null) {
                 x.right = y;
                 y.left = x;
-            } else if (x.left == null && y.left == null) {
-                x.left = x.right;
-                x.right = y;
+            } else if (x.left == null && y.right == null) {
+                x.left = y;
                 y.right = x;
+            } else if (x.left == null && y.left == null) {
+                x = reverseRight(x);
+                x.right = y;
+                y.left = x;
             } else {
-                x.right = x.left;
+                x = reverseRight(x);
                 x.left = y;
                 y.right = x;
             }
@@ -47,6 +47,38 @@ public class RestoreArray {
             firstNode = firstNode.left;
         }
         return res;
+    }
+
+    public Node reverseRight(Node head) {
+        Node newHead = head;
+        while (newHead.right != null) {
+            newHead = newHead.right;
+        }
+        Node tail = newHead;
+        while (head != tail) {
+            int temp = head.val;
+            head.val = tail.val;
+            tail.val = temp;
+            head = head.right;
+            tail = tail.left;
+        }
+        return newHead;
+    }
+
+    public Node reverseLeft(Node head) {
+        Node newHead = head;
+        while (newHead.left != null) {
+            newHead = newHead.left;
+        }
+        Node tail = newHead;
+        while (head != tail) {
+            int temp = head.val;
+            head.val = tail.val;
+            tail.val = temp;
+            head = head.left;
+            tail = tail.right;
+        }
+        return newHead;
     }
 
     static class Node {
