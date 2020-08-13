@@ -1,4 +1,4 @@
-package CodeSignal;
+package Robinhood;
 
 import java.util.ArrayList;
 import java.util.HashSet;

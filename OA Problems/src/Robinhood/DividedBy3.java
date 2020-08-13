@@ -1,4 +1,4 @@
-package CodeSignal;
+package Robinhood;
 
 public class DividedBy3 {
     public static void main(String[] args) {

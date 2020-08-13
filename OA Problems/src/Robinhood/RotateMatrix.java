@@ -1,4 +1,4 @@
-package CodeSignal;
+package Robinhood;
 
 public class RotateMatrix {
     public static void main(String[] args) {
