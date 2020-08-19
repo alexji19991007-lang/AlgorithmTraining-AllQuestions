@@ -3,6 +3,16 @@ package Karat;
 import java.util.*;
 
 public class Calculator {
+    public static void main(String[] args) {
+        Calculator test = new Calculator();
+        System.out.println(test.basicCalculator2("2+((8+2)+(3-999))"));
+        Map<String, Integer> map = new HashMap<>();
+        map.put("a", 1);
+        map.put("b", 2);
+        map.put("c", 3);
+        System.out.println(test.expressionCalculator("a+b+(c+d)+1", map));
+    }
+
     public int basicCalculator1(String expression) {
         int num = 0, sum = 0, sign = 1; // 1 for +, -1 for -
         char[] chars = expression.toCharArray();
@@ -65,166 +75,122 @@ public class Calculator {
         return result + (sign * operand);
     }
 
-    // LeetCode 770
-    // TC: O(2^n + m) where n is the length of the expression and m is the length of the other two
-    //     params. With and expression like (a + b) * (c + d) * (e + f) * ...
-    // SC: O(n + m)
-    public List<String> basicCalculatorIV(String expression, String[] evalVars, int[] evalInts) {
-        Map<String, Integer> evalMap = new HashMap<>();
-        for (int i = 0; i < evalVars.length; ++i) {
-            evalMap.put(evalVars[i], evalInts[i]);
+    public String expressionCalculator(String input, Map<String, Integer> map) {
+        if (input == null || input.length() == 0) {
+            return "";
         }
-        return parse(expression).evaluate(evalMap).toList();
-    }
-
-    public Poly make(String expr) {
-        Poly ans = new Poly();
-        List<String> list = new ArrayList<>();
-        if (Character.isDigit(expr.charAt(0))) {
-            ans.update(list, Integer.parseInt(expr));
-        } else {
-            list.add(expr);
-            ans.update(list, 1);
-        }
-        return ans;
-    }
-
-    public Poly combine(Poly left, Poly right, char symbol) {
-        if (symbol == '+') return left.add(right);
-        if (symbol == '-') return left.sub(right);
-        if (symbol == '*') return left.mul(right);
-        return null;
-    }
-
-    public Poly parse(String expr) {
-        List<Poly> bucket = new ArrayList<>();
-        List<Character> symbols = new ArrayList<>();
+        String simple = simplify(input, map);
         int i = 0;
-        while (i < expr.length()) {
-            if (expr.charAt(i) == '(') {
-                int bal = 0, j = i;
-                for (; j < expr.length(); ++j) {
-                    if (expr.charAt(j) == '(') bal++;
-                    if (expr.charAt(j) == ')') bal--;
-                    if (bal == 0) break;
+        Deque<Cell> stack = new LinkedList<>();
+        StringBuilder sb = new StringBuilder();
+        int num = 0, sum = 0, sign = 1;
+        while (i < simple.length()) {
+            char cur = simple.charAt(i);
+            if (Character.isDigit(cur)) {
+                num = num * 10 + Character.getNumericValue(cur);
+                i++;
+            } else if (cur == '+' || cur == '-') {
+                sum += num * sign;
+                sign = cur == '+' ? 1 : -1;
+                num = 0;
+                i++;
+            } else if (isChar(cur)) {
+                if (sign == 1) {
+                    sb.append('+');
+                } else {
+                    sb.append('-');
                 }
-                bucket.add(parse(expr.substring(i + 1, j)));
-                i = j;
-            } else if (Character.isLetterOrDigit(expr.charAt(i))) {
-                int j = i;
-                search:
-                {
-                    for (; j < expr.length(); ++j)
-                        if (expr.charAt(j) == ' ') {
-                            bucket.add(make(expr.substring(i, j)));
-                            break search;
-                        }
-                    bucket.add(make(expr.substring(i)));
+                while (i < simple.length() && isChar(simple.charAt(i))) {
+                    sb.append(simple.charAt(i));
+                    i++;
                 }
-                i = j;
-            } else if (expr.charAt(i) != ' ') {
-                symbols.add(expr.charAt(i));
+            } else if (cur == '(') {
+                stack.offerFirst(new Cell(sum, sign, sb.toString()));
+                sum = 0;
+                sign = 1;
+                sb.setLength(0);
+                i++;
+            } else {
+                Cell prev = stack.pollFirst();
+                sum += sign * num;
+                int t = prev.sign * sum;
+                num = 0;
+                sum = prev.sum + t;
+                StringBuilder next = new StringBuilder();
+                next.append(prev.str);
+                if (sb.length() > 0) {
+                    next.append(update(prev.sign, sb.toString()));
+                }
+                sb = next;
+                sign = 1;
+                i++;
             }
-            i++;
         }
-
-        for (int j = symbols.size() - 1; j >= 0; --j)
-            if (symbols.get(j) == '*')
-                bucket.set(j, combine(bucket.get(j), bucket.remove(j + 1), symbols.remove(j)));
-
-        if (bucket.isEmpty()) return new Poly();
-        Poly ans = bucket.get(0);
-        for (int j = 0; j < symbols.size(); ++j)
-            ans = combine(ans, bucket.get(j + 1), symbols.get(j));
-
-        return ans;
+        if (num != 0) {
+            sum += sign * num;
+        }
+        sb.append('+');
+        sb.append(sum);
+        return sb.toString();
     }
 
-    static class Poly {
-        Map<List<String>, Integer> count;
-
-        public Poly() {
-            count = new HashMap<>();
-        }
-
-        public void update(List<String> key, int val) {
-            this.count.put(key, this.count.getOrDefault(key, 0) + val);
-        }
-
-        public Poly add(Poly that) {
-            Poly ans = new Poly();
-            for (List<String> k : this.count.keySet())
-                ans.update(k, this.count.get(k));
-            for (List<String> k : that.count.keySet())
-                ans.update(k, that.count.get(k));
-            return ans;
-        }
-
-        public Poly sub(Poly that) {
-            Poly ans = new Poly();
-            for (List<String> k : this.count.keySet())
-                ans.update(k, this.count.get(k));
-            for (List<String> k : that.count.keySet())
-                ans.update(k, -that.count.get(k));
-            return ans;
-        }
-
-        public Poly mul(Poly that) {
-            Poly ans = new Poly();
-            for (List<String> k1 : this.count.keySet())
-                for (List<String> k2 : that.count.keySet()) {
-                    List<String> kNew = new ArrayList<>();
-                    kNew.addAll(k1);
-                    kNew.addAll(k2);
-                    Collections.sort(kNew);
-                    ans.update(kNew, this.count.get(k1) * that.count.get(k2));
-                }
-            return ans;
-        }
-
-        public Poly evaluate(Map<String, Integer> evalMap) {
-            Poly ans = new Poly();
-            for (List<String> k : this.count.keySet()) {
-                int c = this.count.get(k);
-                List<String> free = new ArrayList<>();
-                for (String token : k) {
-                    if (evalMap.containsKey(token))
-                        c *= evalMap.get(token);
-                    else
-                        free.add(token);
-                }
-                ans.update(free, c);
-            }
-            return ans;
-        }
-
-        public int compareList(List<String> A, List<String> B) {
-            int i = 0;
-            for (String x : A) {
-                String y = B.get(i++);
-                if (x.compareTo(y) != 0) return x.compareTo(y);
-            }
-            return 0;
-        }
-
-        public List<String> toList() {
-            List<String> ans = new ArrayList<>();
-            List<List<String>> keys = new ArrayList<>(this.count.keySet());
-            keys.sort((a, b) ->
-                    a.size() != b.size() ? b.size() - a.size() : compareList(a, b));
-
-            for (List<String> key : keys) {
-                int v = this.count.get(key);
-                if (v == 0) continue;
+    public String simplify(String input, Map<String, Integer> map) {
+        StringBuilder res = new StringBuilder();
+        int i = 0;
+        while (i < input.length()) {
+            char cur = input.charAt(i);
+            if (isChar(cur)) {
+                int fast = i;
                 StringBuilder word = new StringBuilder();
-                word.append(v);
-                for (String token : key) {
-                    word.append('*');
-                    word.append(token);
+                while (fast < input.length() && isChar(input.charAt(fast))) {
+                    word.append(input.charAt(fast++));
                 }
-                ans.add(word.toString());
+                i = fast;
+                String s = word.toString();
+                if (map.containsKey(s)) {
+                    res.append(map.get(s));
+                } else {
+                    res.append(s);
+                }
+            } else {
+                res.append(input.charAt(i++));
             }
-            return ans;
+        }
+        return res.toString();
+    }
+
+    private String update(int sign, String s) {
+        StringBuilder sb = new StringBuilder();
+        if (sign == 1) {
+            return s;
+        }
+        for (int i = 0; i < s.length(); ++i) {
+            char cur = s.charAt(i);
+            if (cur == '+') {
+                sb.append('-');
+            } else if (cur == '-') {
+                sb.append('+');
+            } else {
+                sb.append(cur);
+            }
+        }
+        return sb.toString();
+    }
+
+    private boolean isChar(char cur) {
+        return cur >= 'a' && cur <= 'z';
+    }
+
+    static class Cell {
+        int sum;
+        int sign;
+        String str;
+
+        public Cell(int sum, int sign, String str) {
+            this.sum = sum;
+            this.sign = sign;
+            this.str = str;
         }
     }
+
 }

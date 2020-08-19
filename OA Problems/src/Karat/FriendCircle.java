@@ -9,11 +9,13 @@ public class FriendCircle {
                               "2,Joe,HR",
                               "3,Sally,Engineer",
                               "4,Richard,Business",
-                              "6,Tom,Engineer"};
+                              "6,Tom,Engineer",
+                              "5,Donald,Sales"};
         String[] friendships = {"1,2",
                                 "1,3",
                                 "3,4",
-                                "6,1"};
+                                "6,1",
+                                "1,5"};
         System.out.println(test.findFriendRelations(employees, friendships));
         for (String s : test.friendInOtherDepartments(employees, friendships)) {
             System.out.println(s);
@@ -54,16 +56,16 @@ public class FriendCircle {
             String id2 = friendRelation[1];
             String dName2 = employeeToDepartment.get(id2);
             if (!dName1.equals(dName2)) {
-                departmentNameToDepartment.get(dName1).numOutsideFriends++;
-                departmentNameToDepartment.get(dName2).numOutsideFriends++;
+                departmentNameToDepartment.get(dName1).hasOutsideFriends.add(id1);
+                departmentNameToDepartment.get(dName2).hasOutsideFriends.add(id2);
             }
         }
         List<String> res = new ArrayList<>();
         for (Map.Entry<String, Department> entry : departmentNameToDepartment.entrySet()) {
             String name = entry.getValue().name;
             int numEmployees = entry.getValue().numEmployees;
-            int numOutSideFriends = entry.getValue().numOutsideFriends;
-            String output = name + ": " + numOutSideFriends + " of " + numEmployees;
+            int numWhoHasOutsideFriends = entry.getValue().hasOutsideFriends.size();
+            String output = name + ": " + numWhoHasOutsideFriends + " of " + numEmployees;
             res.add(output);
         }
         return res;
@@ -95,12 +97,12 @@ public class FriendCircle {
     static class Department {
         String name;
         int numEmployees;
-        int numOutsideFriends;
+        Set<String> hasOutsideFriends;
 
         public Department(String name) {
             this.name = name;
             this.numEmployees = 0;
-            this.numOutsideFriends = 0;
+            this.hasOutsideFriends = new HashSet<>();
         }
     }
 }
