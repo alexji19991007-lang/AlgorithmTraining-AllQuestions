@@ -17,9 +17,11 @@ public class FriendCircle {
                                 "6,1",
                                 "1,5"};
         System.out.println(test.findFriendRelations(employees, friendships));
+        System.out.println();
         for (String s : test.friendInOtherDepartments(employees, friendships)) {
             System.out.println(s);
         }
+        System.out.println();
         System.out.println(test.allInOneCircle(employees, friendships));
     }
 
@@ -56,15 +58,15 @@ public class FriendCircle {
             String id2 = friendRelation[1];
             String dName2 = employeeToDepartment.get(id2);
             if (!dName1.equals(dName2)) {
-                departmentNameToDepartment.get(dName1).hasOutsideFriends.add(id1);
-                departmentNameToDepartment.get(dName2).hasOutsideFriends.add(id2);
+                departmentNameToDepartment.get(dName1).outsideFriends.add(id1);
+                departmentNameToDepartment.get(dName2).outsideFriends.add(id2);
             }
         }
         List<String> res = new ArrayList<>();
         for (Map.Entry<String, Department> entry : departmentNameToDepartment.entrySet()) {
             String name = entry.getValue().name;
             int numEmployees = entry.getValue().numEmployees;
-            int numWhoHasOutsideFriends = entry.getValue().hasOutsideFriends.size();
+            int numWhoHasOutsideFriends = entry.getValue().outsideFriends.size();
             String output = name + ": " + numWhoHasOutsideFriends + " of " + numEmployees;
             res.add(output);
         }
@@ -97,12 +99,12 @@ public class FriendCircle {
     static class Department {
         String name;
         int numEmployees;
-        Set<String> hasOutsideFriends;
+        Set<String> outsideFriends;
 
         public Department(String name) {
             this.name = name;
             this.numEmployees = 0;
-            this.hasOutsideFriends = new HashSet<>();
+            this.outsideFriends = new HashSet<>();
         }
     }
 }

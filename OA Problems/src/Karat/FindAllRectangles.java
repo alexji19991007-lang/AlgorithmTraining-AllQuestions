@@ -17,7 +17,7 @@ public class FindAllRectangles {
                         {1, 1, 1, 1, 1, 1, 1}};
         int[][] grid1 = {{1, 0, 1, 1, 1, 1, 1},
                          {1, 1, 0, 1, 1, 1, 1},
-                         {1, 1, 1, 0, 0, 0, 1},
+                         {0, 1, 1, 0, 0, 0, 1},
                          {1, 0, 1, 0, 0, 0, 1},
                          {1, 0, 1, 1, 1, 1, 1},
                          {1, 1, 1, 0, 0, 0, 0},
@@ -38,7 +38,7 @@ public class FindAllRectangles {
             System.out.println(Arrays.toString(arr[0]) + ", " + Arrays.toString(arr[1]));
         }
         System.out.println();
-        List<List<Point>> shapes = test.findAllShapes(grid3);
+        List<List<Point>> shapes = test.findAllShapes(grid2);
         for (List<Point> shape : shapes) {
             for (Point p : shape) {
                 System.out.print(p.toString() + " ");

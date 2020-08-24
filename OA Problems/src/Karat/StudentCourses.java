@@ -36,7 +36,7 @@ public class StudentCourses {
             } else {
                 Set<String> courseSet = new HashSet<>();
                 courseSet.add(course);
-                studentCourses.putIfAbsent(id, courseSet);
+                studentCourses.put(id, courseSet);
                 studentList.add(id);
             }
         }

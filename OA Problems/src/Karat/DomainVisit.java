@@ -53,6 +53,8 @@ public class DomainVisit {
     }
 
     public void adsClicks(String[] purchasedUsers, String[] adClicks, String[] allUserIPs) {
+        // First establish a mapping relationship between user ip addresses and advertisements.
+        // Since we created an Advertisement class, we will also need a mapping between adName and Advertisement object
         Map<String, String> ipToAdName = new HashMap<>();
         Map<String, Advertisement> adNameToAd = new HashMap<>();
         for (String adClick : adClicks) {
@@ -63,6 +65,7 @@ public class DomainVisit {
             adNameToAd.put(adName, ad);
             ipToAdName.put(ip, adName);
         }
+        // Find all the purchased users' ip address
         Set<String> purchasedUserIds = new HashSet<>(Arrays.asList(purchasedUsers));
         List<String> purchasedIP = new ArrayList<>();
         for (String userIP : allUserIPs) {
