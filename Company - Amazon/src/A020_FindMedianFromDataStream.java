@@ -2,7 +2,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 // LeetCode 295
-public class A20_FindMedianFromDataStream {
+public class A020_FindMedianFromDataStream {
     // TC: O(logn) for addNum(), O(1) for findMedium()
     // SC: O(n)
     private Queue<Long> largeHalf = new PriorityQueue<>();
