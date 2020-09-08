@@ -11,23 +11,18 @@ public class SlidingWindowMaximum {
         }
         int n = nums.length;
         int[] res = new int[n - k + 1];
-        int resIndex = 0;
+        int idx = 0;
         Deque<Integer> dq = new ArrayDeque<>();
         for (int i = 0; i < nums.length; ++i) {
-            // remove elements that are out of our current sliding window
-            while (!dq.isEmpty() && dq.peek() < i - k + 1) {
-                dq.poll();
+            while (!dq.isEmpty() && dq.peekFirst() < i - k + 1) {
+                dq.pollFirst();
             }
-            // remove elements that are smaller than the current element until we meet an element
-            // that is larger than the current one
             while (!dq.isEmpty() && nums[dq.peekLast()] < nums[i]) {
                 dq.pollLast();
             }
-            dq.addLast(i);
+            dq.offerLast(i);
             if (i >= k - 1) {
-                // The element at the start of the deque should be the largest element in our current window
-                res[resIndex] = nums[dq.peek()];
-                resIndex++;
+                res[idx++] = nums[dq.peekFirst()];
             }
         }
         return res;
