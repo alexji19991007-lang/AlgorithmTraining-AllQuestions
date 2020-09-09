@@ -5,24 +5,28 @@ import java.util.Arrays;
 public class PortfolioValueOptimization {
     public static void main(String[] args) {
         PortfolioValueOptimization test = new PortfolioValueOptimization();
-        String[][] input = {
+        String[][] input1 = {
                 {"P1=15", "S1=45", "A1=3", "AAPL"}, // 1
-                {"P2=40", "S2=55", "A2=3", "BYND"}, // 3
-                //{"P3=25", "S3=35", "A3=3", "SNAP"}, // 2
-                {"P4=30", "S4=40", "A4=4", "TSLA"}  // 4
+                {"P2=40", "S2=50", "A2=3", "BYND"}, // 3
+                {"P3=25", "S3=35", "A3=3", "SNAP"}, // 2
+                {"P4=30", "S4=25", "A4=4", "TSLA"}  // 4
         };
         String[][] input2 = {
                 {"P1=15", "S1=45", "A1=3", "AAPL"}, // 1
-                {"P2=50", "S2=65", "A2=3", "BYND"}, // 2
-                {"P3=25", "S3=35", "A3=3", "SNAP"}  // 3
+                {"P2=50", "S2=65", "A2=3", "BYND"}, // 3
+                {"P3=25", "S3=35", "A3=1", "SNAP"}  // 2
         };
-        System.out.println(test.maxGain(100, input));
-        System.out.println(test.maxGain2(100, input));
+        String[][] input3 = {
+                {"P1=15", "S1=30", "A1=3", "AAPL"},
+                {"P2=20", "S2=45", "A2=3", "TSLA"}
+        };
+        System.out.println(test.maxGain(30, input3));
+        System.out.println(test.maxGain2(30, input3));
     }
 
     public double maxGain(double money, String[][] input) {
         Stock[] stocks = getStocks(input);
-        double gain = 0;
+        double finalMoney = 0;
         for (Stock stock : stocks) {
             int priceDiff = stock.expectedPrice - stock.currentPrice;
             if (money == 0 || priceDiff <= 0) {
@@ -31,25 +35,33 @@ public class PortfolioValueOptimization {
             double maxPurchase = Math.min(stock.purchaseLimit, money / stock.currentPrice);
             money -= maxPurchase * stock.currentPrice;
             stock.purchaseLimit -= maxPurchase;
-            gain += maxPurchase * priceDiff;
+            finalMoney += maxPurchase * stock.expectedPrice;
         }
-        return gain;
+        return finalMoney + money;
     }
 
     public int maxGain2(int money, String[][] input) {
         Stock[] stocks = getStocks(input);
-        int gain = 0;
-        for (Stock stock : stocks) {
-            int priceDiff = stock.expectedPrice - stock.currentPrice;
-            if (money == 0 || priceDiff <= 0) {
-                break;
-            }
-            int maxPurchase = Math.min(stock.purchaseLimit, money / stock.currentPrice);
-            money -= maxPurchase * stock.currentPrice;
-            stock.purchaseLimit -= maxPurchase;
-            gain += maxPurchase * priceDiff;
+        // dp[i][j] means the maximum gain consider only stocks[0 .. i] & with money j.
+        // dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - k * stocks[i].currentPrice] + k * stocks[i].expectedPrice)
+        // 0 <= k <= stocks[i].purchaseLimit
+        int[][] dp = new int[stocks.length + 1][money + 1];
+        // One more row to avoid edge cases
+        for (int i = 0; i < dp[0].length; ++i) {
+            dp[0][i] = i;
         }
-        return gain;
+        for (int i = 1; i < dp.length; ++i) {
+            // Since we have one more row, the induction rule becomes:
+            // dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - k * stocks[i - 1].currentPrice] + k * stocks[i - 1].expectedPrice)
+            // 0 <= k <= stocks[i - 1].purchaseLimit
+            for (int j = 1; j < dp[0].length; ++j) {
+                dp[i][j] = dp[i - 1][j];
+                for (int k = 0; k <= Math.min(j / stocks[i - 1].currentPrice, stocks[i - 1].purchaseLimit); ++k) {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - k * stocks[i - 1].currentPrice] + k * stocks[i - 1].expectedPrice);
+                }
+            }
+        }
+        return dp[stocks.length][money];
     }
 
     public Stock[] getStocks(String[][] input) {
@@ -63,8 +75,6 @@ public class PortfolioValueOptimization {
             stocks[idx++] = new Stock(name, currentPrice, expectedPrice, purchaseLimit);
         }
         Arrays.sort(stocks, (s1, s2) -> {
-//            int diff1 = s1.expectedPrice - s1.currentPrice;
-//            int diff2 = s2.expectedPrice - s2.currentPrice;
             if (s1.percentageGain == s2.percentageGain) {
                 if (s1.currentPrice == s2.currentPrice) {
                     return 0;

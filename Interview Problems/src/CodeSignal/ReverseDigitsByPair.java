@@ -1,4 +1,4 @@
-package Robinhood;
+package CodeSignal;
 
 public class ReverseDigitsByPair {
     public static void main(String[] args) {

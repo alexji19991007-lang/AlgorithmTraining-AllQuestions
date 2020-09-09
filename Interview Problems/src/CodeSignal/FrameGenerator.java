@@ -1,4 +1,4 @@
-package Robinhood;
+package CodeSignal;
 
 public class FrameGenerator {
     public static void main(String[] args) {

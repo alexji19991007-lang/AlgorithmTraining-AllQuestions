@@ -1,4 +1,4 @@
-package Robinhood;
+package CodeSignal;
 
 public class RemoveOneChar {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Robinhood;
+package CodeSignal;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

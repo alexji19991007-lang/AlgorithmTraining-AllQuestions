@@ -1,4 +1,4 @@
-package Robinhood;
+package CodeSignal;
 
 class SumOfString {
 	public static void main(String[] args){

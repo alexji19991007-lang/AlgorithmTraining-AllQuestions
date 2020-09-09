@@ -1,4 +1,4 @@
-package Robinhood;
+package CodeSignal;
 
 public class OccurrenceBetweenIndices {
     public static void main(String[] args) {
