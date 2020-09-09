@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DecodeWays_2 {
-    private static char[] decode = {'0', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+    private static final char[] decode = {'0', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
             'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     public static void main(String[] args) {
         String input = "1121";

@@ -5,15 +5,15 @@ public class BestBuyAndSell3 {
         if (array.length == 0) {
             return 0;
         }
+        // leftProfits[i] = the maximum profit if we make transaction between day 0 and i
         int[] leftProfits = new int[array.length];
+        // rightProfits[r] = the maximum profit if we make transaction between day r and last day.
         int[] rightProfits = new int[array.length];
         int leftMin = array[0];
         int rightMax = array[array.length - 1];
         for (int i = 1; i < array.length; ++i) {
-            // leftProfits[i] = the maximum profit if we make transaction between day 0 and i
             leftProfits[i] = Math.max(leftProfits[i - 1], array[i] - leftMin);
             leftMin = Math.min(leftMin, array[i]);
-            // rightProfits[r] = the maximum profit if we make transaction between day r and last day.
             // where r = array.length - 1 - i
             int r = array.length - 1 - i;
             rightProfits[r] = Math.max(rightProfits[r + 1], rightMax - array[r]);
