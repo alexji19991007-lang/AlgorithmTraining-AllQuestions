@@ -1,15 +1,13 @@
 package RobinhoodOnsite;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class TradeMatch {
     public static void main(String[] args) {
         TradeMatch test = new TradeMatch();
         String[] houseTrades = {"AAPL,B,0100,ABC123", "AAPL,B,0100,ABC456", "FB,S,0050,CDC333"};
-        String[] streetTrades = {"FB,B,0100,GBGGGG", "AAPL,B,0100,ABC456", "FB,B,0100,ABC123"};
-        System.out.println(test.attributeMatch(houseTrades, streetTrades).toString());
+        String[] streetTrades = {"FB,B,0100,GBGGGG", "AAPL,B,0100,ABC456", "FB,S,0100,ABC123"};
+        System.out.println(test.offsettingMatch(houseTrades, streetTrades).toString());
     }
 
     public List<String> exactMatch(String[] houseTrades, String[] streetTrades) {
@@ -110,20 +108,8 @@ public class TradeMatch {
         List<String> remainingHouse = remaining.get(0);
         List<String> remainingStreet = remaining.get(1);
         List<String> res = new ArrayList<>();
-        int i = 0, j = 1;
-        while (j < remainingHouse.size()) {
-            String[] houseRecord1 = remainingHouse.get(i).split(",");
-            String[] houseRecord2 = remainingHouse.get(j).split(",");
-            if (!(houseRecord1[0].equals(houseRecord2[0]) && houseRecord1[2].equals(houseRecord2[2]) && !houseRecord1[1].equals(houseRecord2[1]))) {
-                while (i < j) {
-                    res.add(remainingHouse.get(i++));
-                }
-            } else {
-                // 这里有问题
-                i++;
-            }
-            j++;
-        }
+        offsettingMatchHelper(remainingHouse, res);
+        offsettingMatchHelper(remainingStreet, res);
         return res;
     }
 
@@ -164,5 +150,31 @@ public class TradeMatch {
         res.add(notAttributeHouse);
         res.add(notAttributeStreet);
         return res;
+    }
+
+    public void offsettingMatchHelper(List<String> remain, List<String> res) {
+        Set<Integer> matched = new HashSet<>();
+        for (int i = 0; i < remain.size(); ++i) {
+            if (matched.contains(i)) {
+                continue;
+            }
+            String[] trade1 = remain.get(i).split(",");
+            for (int j = i + 1; j < remain.size(); ++j) {
+                if (matched.contains(j)) {
+                    continue;
+                }
+                String[] trade2 = remain.get(j).split(",");
+                if (trade2[1].equals(trade1[1])) {
+                    continue;
+                }
+                if (trade1[0].equals(trade2[0]) && trade1[2].equals(trade2[2])) {
+                    matched.add(i);
+                    matched.add(j);
+                }
+            }
+            if (!matched.contains(i)) {
+                res.add(remain.get(i));
+            }
+        }
     }
 }

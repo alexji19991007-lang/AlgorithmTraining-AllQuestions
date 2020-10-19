@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class ReverseWordsInASentence {
     public String reverseWords(String input) {
         char[] array = input.toCharArray();
