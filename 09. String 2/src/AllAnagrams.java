@@ -3,7 +3,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// all
 public class AllAnagrams {
     public List<Integer> allAnagrams(String sh, String lo) {
         List<Integer> res = new ArrayList<>();
