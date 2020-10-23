@@ -1,16 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
 
-class Point {
-    public int x;
-    public int y;
-
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-}
-
 public class MostPointsOnALine {
     public int most(Point[] points) {
         int res = 0;
@@ -43,5 +33,15 @@ public class MostPointsOnALine {
             res = Math.max(most, res);
         }
         return res;
+    }
+
+    static class Point {
+        public int x;
+        public int y;
+
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }

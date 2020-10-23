@@ -1,34 +1,6 @@
+package Citrix;
+
 public class Trie {
-    static class TrieNode {
-        private final TrieNode[] links;
-        private final int R = 26;
-        private boolean isEnd;
-
-        public TrieNode() {
-            links = new TrieNode[R];
-        }
-
-        public boolean containsKey(char ch) {
-            return links[ch - 'a'] != null;
-        }
-
-        public TrieNode get(char ch) {
-            return links[ch - 'a'];
-        }
-
-        public void put(char ch, TrieNode node) {
-            links[ch - 'a'] = node;
-        }
-
-        public void setEnd() {
-            isEnd = true;
-        }
-
-        public boolean isEnd() {
-            return isEnd;
-        }
-    }
-
     private final TrieNode root;
 
     /**
@@ -82,5 +54,35 @@ public class Trie {
     public boolean startsWith(String prefix) {
         TrieNode node = searchPrefix(prefix);
         return node != null;
+    }
+
+    static class TrieNode {
+        private final TrieNode[] links;
+        private final int R = 26;
+        private boolean isEnd;
+
+        public TrieNode() {
+            links = new TrieNode[R];
+        }
+
+        public boolean containsKey(char ch) {
+            return links[ch - 'a'] != null;
+        }
+
+        public TrieNode get(char ch) {
+            return links[ch - 'a'];
+        }
+
+        public void put(char ch, TrieNode node) {
+            links[ch - 'a'] = node;
+        }
+
+        public void setEnd() {
+            isEnd = true;
+        }
+
+        public boolean isEnd() {
+            return isEnd;
+        }
     }
 }

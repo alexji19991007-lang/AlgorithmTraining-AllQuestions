@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class QuickSort {
     public static void main(String[] args) {
@@ -23,13 +24,14 @@ public class QuickSort {
     }
 
     public static int partition(int[] array, int begin, int end) {
-        int pivot = end;
+        int pivot = begin + (int) (Math.random() * (end - begin + 1));
+        swap(array, pivot, end);
         int i = begin;
         int j = end - 1;
         while (i <= j) {
-            if (array[i] < array[pivot]) {
+            if (array[i] < array[end]) {
                 i++;
-            } else if (array[j] > array[pivot]) {
+            } else if (array[j] >= array[end]) {
                 j--;
             } else {
                 swap(array, i++, j--);
