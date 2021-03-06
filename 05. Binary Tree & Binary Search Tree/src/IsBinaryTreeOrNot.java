@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class IsBinaryTreeOrNot {
     public boolean isBST(TreeNode root) {
         return isBSTUntil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);

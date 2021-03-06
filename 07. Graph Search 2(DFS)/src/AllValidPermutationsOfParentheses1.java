@@ -1,5 +1,8 @@
 import java.util.*;
 
+// TC: O(2^(2n) * n)
+// SC: O(n)
+
 public class AllValidPermutationsOfParentheses1 {
     public List<String> validParentheses(int n) {
         List<String> res = new ArrayList<>();

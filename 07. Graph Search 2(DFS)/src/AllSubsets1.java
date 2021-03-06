@@ -1,5 +1,8 @@
 import java.util.*;
 
+// TC: O(2^n * n)
+// SC: O(n)
+
 public class AllSubsets1 {
     public List<String> subSets(String set) {
         List<String> res = new ArrayList<>();

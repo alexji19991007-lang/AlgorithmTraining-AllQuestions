@@ -1,5 +1,8 @@
 import java.util.*;
 
+// TC: O(target ^ coins.length)
+// SC: O(coins.length)
+
 public class CombinationsOfCoins {
     public static void main(String[] args) {
         int target = 50;
