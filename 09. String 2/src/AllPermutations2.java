@@ -1,5 +1,8 @@
 import java.util.*;
 
+// TC: O(n! * n)
+// SC: O(n^2)
+
 public class AllPermutations2 {
     public List<String> permutations(String input) {
         List<String> res = new ArrayList<>();
