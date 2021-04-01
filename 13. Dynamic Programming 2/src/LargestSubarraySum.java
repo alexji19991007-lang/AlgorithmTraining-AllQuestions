@@ -15,25 +15,24 @@ public class LargestSubarraySum {
         int prevSum = array[0];
         int globalMax = array[0];
         // curLeft and curRight represents the start and end index of the largest sub-array sum we have so far.
-        int curLeft = 0, curRight = 0;
+        int globalLeft = 0, globalRight = 0;
+        int curLeft = 0;
+        // i is our curRight pointer
         for (int i = 1; i < array.length; ++i) {
             if (prevSum > 0) {
                 prevSum += array[i];
-                if (prevSum > globalMax) {
-                    globalMax = prevSum;
-                    // We inherited prevSum, so we only have to move the right border.
-                    curRight = i;
-                }
             } else {
                 prevSum = array[i];
-                if (prevSum > globalMax) {
-                    globalMax = prevSum;
-                    // We discarded prevSum, so we have to reset left and right border.
-                    curLeft = i;
-                    curRight = i;
-                }
+                // We discarded prevSum, so we have to reset curLeft and curRight border (curRight is automatically reset).
+                curLeft = i;
+            }
+            if (prevSum > globalMax) {
+                globalMax = prevSum;
+                // We inherited prevSum. update globalLeft & globalRight
+                globalLeft = curLeft;
+                globalRight = i;
             }
         }
-        return new int[] {globalMax, curLeft, curRight};
+        return new int[] {globalMax, globalLeft, globalRight};
     }
 }

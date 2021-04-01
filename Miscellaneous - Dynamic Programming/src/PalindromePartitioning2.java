@@ -1,6 +1,6 @@
 public class PalindromePartitioning2 {
     public static void main(String[] args) {
-        String x = "abcde";
+        String x = "ACAACA";
         System.out.println(minCut(x));
     }
 
