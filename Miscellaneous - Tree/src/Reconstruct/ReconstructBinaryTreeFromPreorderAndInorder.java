@@ -11,7 +11,7 @@ public class ReconstructBinaryTreeFromPreorderAndInorder {
         // start from first preorder element
         int[] preIndex = {0};
         // set up hashmap
-        for (Integer val : inorder) {
+        for (int val : inorder) {
             indexMap.put(val, i);
             i++;
         }

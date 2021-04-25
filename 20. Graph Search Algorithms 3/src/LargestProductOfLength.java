@@ -6,14 +6,11 @@ import java.util.Map;
 public class LargestProductOfLength {
     public int largestProduct(String[] dict) {
         Map<String, Integer> bitMasks = getBitMasks(dict);
-        Arrays.sort(dict, new Comparator<String>() {
-            @Override
-            public int compare(String s0, String s1) {
-                if (s0.length() == s1.length()) {
-                    return 0;
-                }
-                return s0.length() < s1.length() ? 1 : -1;
+        Arrays.sort(dict, (s0, s1) -> {
+            if (s0.length() == s1.length()) {
+                return 0;
             }
+            return s0.length() < s1.length() ? 1 : -1;
         });
         int largest = 0;
         for (int i = 1; i < dict.length; ++i) {

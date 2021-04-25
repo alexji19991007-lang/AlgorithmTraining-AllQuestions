@@ -1,16 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
 
-class RandomListNode {
-    public int value;
-    public RandomListNode next;
-    public RandomListNode random;
-
-    public RandomListNode(int value) {
-        this.value = value;
-    }
-}
-
 public class DeepCopyLinkedListWithRandomPointer {
     public RandomListNode copy(RandomListNode head) {
         if (head == null) {
@@ -41,4 +31,16 @@ public class DeepCopyLinkedListWithRandomPointer {
         }
         return res;
     }
+
+    static class RandomListNode {
+        public int value;
+        public RandomListNode next;
+        public RandomListNode random;
+
+        public RandomListNode(int value) {
+            this.value = value;
+        }
+    }
+
+
 }

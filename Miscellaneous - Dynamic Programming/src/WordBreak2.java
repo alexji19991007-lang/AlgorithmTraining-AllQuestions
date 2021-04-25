@@ -9,6 +9,9 @@ public class WordBreak2 {
         wordDict.add("and");
         wordDict.add("sand");
         wordDict.add("dog");
+        wordDict.add("san");
+        wordDict.add("ddog");
+        wordDict.add("an");
         List<String> ans = wordBreak(s, wordDict);
         System.out.println(ans.toString());
     }

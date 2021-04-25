@@ -1,8 +1,21 @@
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class WordBreak {
+    public static void main(String[] args) {
+        WordBreak test = new WordBreak();
+        String s = "catsanddog";
+        List<String> wordDict = new ArrayList<>();
+        wordDict.add("cat");
+        wordDict.add("cats");
+        wordDict.add("and");
+        wordDict.add("sand");
+        wordDict.add("dog");
+        wordDict.add("san");
+        wordDict.add("ddog");
+//        wordDict.add("an");
+        System.out.println(test.wordBreakWays(s, wordDict));
+    }
+
     public boolean canBreak(String input, String[] dict) {
         Set<String> wordDict = new HashSet<>(Arrays.asList(dict));
         // We need one extra index for "", which is true
@@ -21,4 +34,19 @@ public class WordBreak {
         return M[M.length - 1];
     }
     // O(n^3)
+
+    // What if we want to know how many ways are there to break?
+    public int wordBreakWays(String input, List<String> dict) {
+        Set<String> wordDict = new HashSet<>(dict);
+        int[] M = new int[input.length() + 1];
+        M[0] = 1;
+        for (int i = 1; i <= input.length(); ++i) {
+            for (int j = 0; j <= i; ++j) {
+                if (M[j] > 0 && wordDict.contains(input.substring(j, i))) {
+                    M[i] += M[j];
+                }
+            }
+        }
+        return M[M.length - 1];
+    }
 }

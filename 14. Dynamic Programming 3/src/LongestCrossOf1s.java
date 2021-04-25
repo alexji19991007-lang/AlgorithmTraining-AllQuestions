@@ -1,22 +1,22 @@
 public class LongestCrossOf1s {
     public int largest(int[][] matrix) {
-        int N = matrix.length;
-        if (N == 0) {
+        int R = matrix.length;
+        if (R == 0) {
             return 0;
         }
-        int M = matrix[0].length;
-        if (M == 0) {
+        int C = matrix[0].length;
+        if (C == 0) {
             return 0;
         }
-        int[][] leftUp = leftUp(matrix, N, M);
-        int[][] rightDown = rightDown(matrix, N, M);
-        return merge(leftUp, rightDown, N, M);
+        int[][] leftUp = leftUp(matrix, R, C);
+        int[][] rightDown = rightDown(matrix, R, C);
+        return merge(leftUp, rightDown, R, C);
     }
 
-    public int merge(int[][] leftUp, int[][] rightDown, int N, int M) {
+    public int merge(int[][] leftUp, int[][] rightDown, int R, int C) {
         int res = 0;
-        for (int i = 0; i < N; ++i) {
-            for (int j = 0; j < M; ++j) {
+        for (int i = 0; i < R; ++i) {
+            for (int j = 0; j < C; ++j) {
                 leftUp[i][j] = Math.min(leftUp[i][j], rightDown[i][j]);
                 res = Math.max(res, leftUp[i][j]);
             }
@@ -24,57 +24,42 @@ public class LongestCrossOf1s {
         return res;
     }
 
-    public int[][] leftUp(int[][] matrix, int N, int M) {
-        int[][] left = new int[N][M]; // 从左往右
-        int[][] up = new int[N][M]; // 从上往下
-        for (int i = 0; i < N; ++i) {
-            for (int j = 0; j < M; ++j) {
+    public int[][] leftUp(int[][] matrix, int R, int C) {
+        int[][] left = new int[R][C]; // 从左往右
+        int[][] up = new int[R][C]; // 从上往下
+        for (int i = 0; i < R; ++i) {
+            for (int j = 0; j < C; ++j) {
                 if (matrix[i][j] == 1) {
-                    if (i == 0 && j == 0) {
-                        up[i][j] = 1;
-                        left[i][j] = 1;
-                    } else if (i == 0) {
-                        up[i][j] = 1;
-                        left[i][j] = left[i][j - 1] + 1;
-                    } else if (j == 0) {
-                        up[i][j] = up[i - 1][j] + 1;
-                        left[i][j] = 1;
-                    } else {
-                        up[i][j] = up[i - 1][j] + 1;
-                        left[i][j] = left[i][j - 1] + 1;
-                    }
+                    left[i][j] = getNumber(left, i, j - 1, R, C) + 1;
+                    up[i][j] = getNumber(up, i - 1, j, R, C) + 1;
                 }
             }
         }
         // merge left and up, return the merged matrix
-        merge(left, up, N, M);
+        merge(left, up, R, C);
         return left;
     }
 
-    public int[][] rightDown(int[][] matrix, int N, int M) {
-        int[][] right = new int[N][M]; // 从右往左
-        int[][] down = new int[N][M]; // 从下往上
-        for (int i = N - 1; i >= 0; --i) {
-            for (int j = M - 1; j >= 0; --j) {
+    public int[][] rightDown(int[][] matrix, int R, int C) {
+        int[][] right = new int[R][C]; // 从右往左
+        int[][] down = new int[R][C]; // 从下往上
+        for (int i = R - 1; i >= 0; --i) {
+            for (int j = C - 1; j >= 0; --j) {
                 if (matrix[i][j] == 1) {
-                    if (i == N - 1 && j == M - 1) {
-                        down[i][j] = 1;
-                        right[i][j] = 1;
-                    } else if (i == N - 1) {
-                        down[i][j] = 1;
-                        right[i][j] = right[i][j + 1] + 1;
-                    } else if (j == M - 1) {
-                        down[i][j] = down[i + 1][j] + 1;
-                        right[i][j] = 1;
-                    } else {
-                        down[i][j] = down[i + 1][j] + 1;
-                        right[i][j] = right[i][j + 1] + 1;
-                    }
+                    right[i][j] = getNumber(right, i, j + 1, R, C) + 1;
+                    down[i][j] = getNumber(down, i + 1, j, R, C) + 1;
                 }
             }
         }
         // merge right and down, return the merged matrix
-        merge(right, down, N, M);
+        merge(right, down, R, C);
         return right;
+    }
+
+    private int getNumber(int[][] matrix, int x, int y, int R, int C) {
+        if (x < 0 || x >= R || y < 0 || y >= C) {
+            return 0;
+        }
+        return matrix[x][y];
     }
 }

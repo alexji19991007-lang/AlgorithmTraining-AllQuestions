@@ -1,15 +1,5 @@
 import java.util.*;
 
-class GraphNode {
-    public int key;
-    public List<GraphNode> neighbors;
-
-    public GraphNode(int key) {
-        this.key = key;
-        this.neighbors = new ArrayList<GraphNode>();
-    }
-}
-
 public class DeepCopyUndirectedGraph {
     // Method 1: Using BFS
     public List<GraphNode> copyBFS(List<GraphNode> graph) {
@@ -69,4 +59,13 @@ public class DeepCopyUndirectedGraph {
         }
     }
 
+    static class GraphNode {
+        public int key;
+        public List<GraphNode> neighbors;
+
+        public GraphNode(int key) {
+            this.key = key;
+            this.neighbors = new ArrayList<GraphNode>();
+        }
+    }
 }

@@ -5,10 +5,13 @@ public class A018_WordLadder {
     // TC: O(n * k^2), where n is the size of the wordList, and k is the length of each word
     // SC: O(n * k)
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        // If the end word is not in the list, return 0 (transform impossible)
         int endIndex = wordList.indexOf(endWord);
         if (endIndex == -1) {
             return 0;
         }
+        // If the begin word is not in the list, add it to the last of the word list
+        // and set the beginIndex to the index of the begin word
         int beginIndex = wordList.indexOf(beginWord);
         if (beginIndex == -1) {
             wordList.add(beginWord);

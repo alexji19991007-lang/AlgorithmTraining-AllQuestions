@@ -1,5 +1,3 @@
-import javafx.util.Pair;
-
 import java.util.*;
 
 public class WordLadder {
@@ -44,5 +42,23 @@ public class WordLadder {
             }
         }
         return 0;
+    }
+
+    static class Pair<K, V> {
+        K key;
+        V value;
+
+        public Pair(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return value;
+        }
     }
 }

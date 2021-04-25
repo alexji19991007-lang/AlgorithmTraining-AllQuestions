@@ -20,8 +20,8 @@ public class CourseSchedule2 {
         int numCourses = graph.size();
         int[] topologicalOrder = new int[numCourses];
         int[] incomingEdges = new int[numCourses];
-        for (int x = 0; x < numCourses; ++x) {
-            for (int y : graph.get(x)) {
+        for (List<Integer> integers : graph) {
+            for (int y : integers) {
                 incomingEdges[y]++;
             }
         }
