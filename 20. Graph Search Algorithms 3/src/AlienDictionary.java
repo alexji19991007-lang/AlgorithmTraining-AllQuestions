@@ -8,78 +8,80 @@ public class AlienDictionary {
     }
 
     public String alienOrder(String[] words) {
+        //corner case
+        if (words == null || words.length == 0) {
+            return null;
+        }
+        // inDegree to record how many incoming edges (i.e. how many letters have higher priority over this letter)
+        int[] inDegree = new int[26];
+        // key: character c1 of higher priority
+        // value: characters that we know having lower priority than c1
         Map<Character, Set<Character>> graph = new HashMap<>();
-        Set<Character> charSet = getCharSet(words);
-        buildGraph(words, graph);
-        return topologicalSort(graph, charSet);
+        if (!createGraph(words, inDegree, graph)) {
+            return "";
+        }
+        return topoSort(inDegree, graph);//run a bfs to expand all the nodes(chars)
+
     }
 
-    public String topologicalSort(Map<Character, Set<Character>> graph, Set<Character> charSet) {
-        int numChars = charSet.size();
-        char[] topologicalOrder = new char[numChars];
-        Map<Character, Integer> incomingEdges = new HashMap<>();
-        for (char x : charSet) {
-            incomingEdges.put(x, 0);
-        }
-        for (char x : charSet) {
-            Set<Character> next = graph.getOrDefault(x, null);
-            if (next == null) {
-                continue;
-            }
-            for (char y : next) {
-                incomingEdges.put(y, incomingEdges.get(y) + 1);
+    private boolean createGraph(String[] words, int[] inDegree, Map<Character, Set<Character>> graph) {
+        //iterate all the words to find all the unique chars(nodes) and put in the graph
+        for (String word : words) {
+            for (char c : word.toCharArray()) {
+                graph.putIfAbsent(c, new HashSet<>());
             }
         }
-        Queue<Character> q = new ArrayDeque<>();
-        for (char x : incomingEdges.keySet()) {
-            if (incomingEdges.get(x) == 0) {
-                q.offer(x);
-            }
-        }
-        int numExpanded = 0;
-        while (!q.isEmpty()) {
-            char cur = q.poll();
-            topologicalOrder[numExpanded++] = cur;
-            if (graph.get(cur) == null) {
-                continue;
-            }
-            for (char y : graph.get(cur)) {
-                int newIncomingEdgeCount = incomingEdges.get(y) - 1;
-                incomingEdges.put(y, newIncomingEdgeCount);
-                if (newIncomingEdgeCount == 0) {
-                    q.offer(y);
-                }
-            }
-        }
-        return numExpanded == numChars ? new String(topologicalOrder) : "";
-    }
-
-    public void buildGraph(String[] words, Map<Character, Set<Character>> graph) {
-        for (int i = 0; i < words.length - 1; ++i) {
-            String s1 = words[i];
-            String s2 = words[i + 1];
-            for (int k = 0; k < Math.min(s1.length(), s2.length()); ++k) {
-                char c1 = s1.charAt(k);
-                char c2 = s2.charAt(k);
-                if (c1 != c2) {
-                    Set<Character> adjList = graph.getOrDefault(c1, new HashSet<>());
-                    if (!adjList.contains(c2)) {
-                        adjList.add(c2);
+        //compare every 2 words in sequence to find the in/out relation (edges)
+        for (int i = 1; i < words.length; i++) {
+            String first = words[i - 1];
+            String second = words[i];
+            int minLength = Math.min(first.length(), second.length());
+            for (int j = 0; j < minLength; j++) {
+                char higherChar = first.charAt(j); // c1
+                char lowerChar = second.charAt(j); // c2
+                if (higherChar != lowerChar) {
+                    // c1 has higher priority than c2
+                    // We make an edge from c1 --> c2
+                    if (graph.get(higherChar).add(lowerChar)) {
+                        // the lower-priority character c2 has one more incoming edge,
+                        // thus we increment its in-degree by 1.
+                        inDegree[lowerChar - 'a']++;
                     }
-                    graph.put(c1, adjList);
                     break;
                 }
+                // Consider cases like: ["abc", "ab"]
+                // The inner for loop has reached the end, meaning that the first k characters of two strings are the
+                // same, but the longer string has higher priority. Clearly this case is invalid.
+                if (j == minLength - 1 && first.length() > second.length()) {
+                    return false;
+                }
             }
         }
+        return true;
     }
 
-    public Set<Character> getCharSet(String[] words) {
-        Set<Character> charSet = new HashSet<>();
-        for (String word : words) {
-            for (int i = 0; i < word.length(); ++i) {
-                charSet.add(word.charAt(i));
+    private String topoSort(int[] inDegree, Map<Character, Set<Character>> graph) {
+        Queue<Character> q = new ArrayDeque<>();
+        StringBuilder s = new StringBuilder();
+        // Initialize the queue with all the nodes with 0 in-degree (i.e. has highest priority).
+        for (char c : graph.keySet()) {
+            if (inDegree[c - 'a'] == 0) {
+                q.offer(c);
             }
         }
-        return charSet;
+        while (!q.isEmpty()) {
+            char out = q.poll();
+            s.append(out);
+            for (char in : graph.get(out)) {
+                // decrement the in-degree of corresponding lower-priority characters.
+                inDegree[in - 'a']--;
+                // If the lower priority character has no more incoming edges, then add it to the queue.
+                if (inDegree[in - 'a'] == 0) {
+                    q.offer(in);
+                }
+            }
+        }
+        // We must expand all nodes in the graph. Otherwise, there are some unreachable characters, invalid case.
+        return s.length() == graph.size() ? s.toString() : "";
     }
 }
