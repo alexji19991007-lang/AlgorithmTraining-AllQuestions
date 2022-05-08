@@ -4,23 +4,26 @@ import java.util.List;
 import java.util.Map;
 
 public class FizzBuzz {
-    public List<String> fizzBuzz(int n) {
-        List<String> ans = new ArrayList<>();
+    public static void main(String[] args) {
+        FizzBuzz test = new FizzBuzz();
+        test.fizzBuzz(15);
+    }
+
+    public void fizzBuzz(int n) {
         Map<Integer, String> dict = new HashMap<>();
         dict.put(3, "Fizz");
         dict.put(5, "Buzz");
         for (int i = 1; i <= n; ++i) {
             StringBuilder toAdd = new StringBuilder();
-            for (Integer key : dict.keySet()) {
-                if (i % key == 0) {
-                    toAdd.append(dict.get(key));
+            for (Map.Entry<Integer, String> entry : dict.entrySet()) {
+                if (i % entry.getKey() == 0) {
+                    toAdd.append(entry.getValue());
                 }
             }
             if (toAdd.toString().equals("")) {
                 toAdd.append(i);
             }
-            ans.add(toAdd.toString());
+            System.out.println(toAdd);
         }
-        return ans;
     }
 }

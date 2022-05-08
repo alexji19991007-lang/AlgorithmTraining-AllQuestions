@@ -3,7 +3,7 @@ package CodeSignal;
 public class DividedBy3 {
     public static void main(String[] args) {
         DividedBy3 test = new DividedBy3();
-        System.out.println(test.dividedBy3("456"));
+        System.out.println(test.dividedBy3("314"));
     }
 
     public int dividedBy3(String number) {
