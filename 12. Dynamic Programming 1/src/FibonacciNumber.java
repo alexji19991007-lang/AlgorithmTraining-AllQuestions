@@ -3,15 +3,15 @@ public class FibonacciNumber {
         if (K <= 0) {
             return 0;
         }
-        if (K == 1) {
+        if (K <= 2) {
             return 1;
         }
-        long[] fib = new long[K];
-        fib[0] = 1;
-        fib[1] = 1;
-        for (int i = 2; i < K; ++i) {
-            fib[i] = fib[i - 1] + fib[i - 2];
+        long[] fibo = new long[K + 1];
+        fibo[0] = 0;
+        fibo[1] = 1;
+        for (int i = 2; i <= K; ++i) {
+            fibo[i] = fibo[i - 1] + fibo[i - 2];
         }
-        return fib[K - 1];
+        return fibo[K];
     }
 }

@@ -1,5 +1,7 @@
 import java.util.*;
 
+// Time Complexity: O(n^2)
+// Space Complexity: O(n) --> actually no additional memory
 public class SortWith2Stacks {
     public void sort(LinkedList<Integer> s1) {
         if (s1 == null || s1.size() <= 1) {

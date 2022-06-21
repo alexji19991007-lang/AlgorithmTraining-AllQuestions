@@ -32,10 +32,10 @@ public class MajorityNumber2 {
         count1 = map.get(num1);
         // 如果num1 == num2，只加一次到答案中
         count2 = num1 == num2 ? 0 : map.get(num2);
-        if (count1 > array.length / 2) {
+        if (count1 > array.length / 3) {
             res.add(num1);
         }
-        if (count2 > array.length / 2) {
+        if (count2 > array.length / 3) {
             res.add(num2);
         }
         return res;

@@ -5,30 +5,43 @@ public class RestoreIPAddress {
     public List<String> Restore(String ip) {
         List<String> res = new ArrayList<>();
         // We cannot restore a string with length greater than 12
-        if (ip.length() > 12) {
+        if (ip == null || ip.length() == 0 || ip.length() > 12) {
             return res;
         }
-        restoreHelper(ip, res, 0, "", 0);
+        restoreHelper(ip.toCharArray(), 0, 0, new StringBuilder(), res);
         return res;
     }
 
-    private void restoreHelper(String s, List<String> res, int index, String temp, int section) {
-        if (section == 4 && index == s.length()) {
-            res.add(temp);
+    private void restoreHelper(char[] ip, int section, int index, StringBuilder sb, List<String> res) {
+        if (section == 4) {
+            if (sb.length() == ip.length + 4) {
+                res.add(sb.substring(0, sb.length() - 1));
+            }
             return;
         }
-        for (int i = 1; i <= 3; ++i) {
-            if (index + i > s.length()) {
-                return;
+        if (index < ip.length) {
+            sb.append(ip[index]).append('.');
+            restoreHelper(ip, section + 1, index + 1, sb, res);
+            sb.delete(sb.length() - 2, sb.length());
+        }
+        if (index + 1 < ip.length) {
+            char a = ip[index];
+            char b = ip[index + 1];
+            if (a != '0') {
+                sb.append(a).append(b).append('.');
+                restoreHelper(ip, section + 1, index + 2, sb, res);
+                sb.delete(sb.length() - 3, sb.length());
             }
-            // Take out the current part
-            String mPart = s.substring(index, index + i);
-            // Filter out certain cases where the current part is invalid
-            if (mPart.startsWith("0") && mPart.length() > 1 || Integer.parseInt(mPart) > 255) {
-                return;
+        }
+        if (index + 2 < ip.length) {
+            char a = ip[index];
+            char b = ip[index + 1];
+            char c = ip[index + 2];
+            if ((a == '1') || (a == '2' && b >= '0' && b <= '4') || (a == '2' && b == '5' && c >= '0' && c <= '5')) {
+                sb.append(a).append(b).append(c).append('.');
+                restoreHelper(ip, section + 1, index + 3, sb, res);
+                sb.delete(sb.length() - 4, sb.length());
             }
-            // recursive call here
-            restoreHelper(s, res, index + i, section == 0 ? mPart : temp + "." + mPart, section + 1);
         }
     }
 }

@@ -24,8 +24,8 @@ public class LargestSquareSurroundedByOne {
                 // Then we have to check the top side and left side.
                 for (int k = maxLen; k >= 1; k--) {
                     // Make sure these two sides are greater than or equal to our current maxLen
-                    // i + 2 - k = i + 1 - k + 1, look at top right corner, top side
-                    // j + 2 - k = j + 1 - k + 1, look at bottom left corner, left side
+                    // i + 2 - k = (i + 1) - k + 1, look at top right corner, top side
+                    // j + 2 - k = (j + 1) - k + 1, look at bottom left corner, left side
                     if (left[i + 2 - k][j + 1] >= k && up[i + 1][j + 2 - k] >= k) {
                         res = Math.max(res, k);
                         break;

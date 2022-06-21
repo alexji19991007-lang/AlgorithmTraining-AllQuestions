@@ -12,8 +12,10 @@ public class LongestAscendingSubsequence2 {
         }
         // The smallest ending value of all the ascending subsequences with length i
         int[] smallestEnding = new int[a.length + 1];
+        // M[i] = The current maximum length ending with array[i]
         int[] M = new int[a.length];
         int longest = 1;
+        // What is the index of the ending value of the current longest ascending subsequence
         int longestIndex = 0;
         smallestEnding[1] = a[0];
         M[0] = 1;
@@ -40,6 +42,9 @@ public class LongestAscendingSubsequence2 {
         int[] res = new int[longest];
         res[longest - 1] = array[longestIndex];
         int curIndex = longest - 2;
+        // 从longestIndex一个个往前找。array[i]要想放到result里面需要满足两个条件：
+        // 1. array[i] < array[longestIndex], 说明array[i]放进去以后可以保证还是ascending subsequence。
+        // 2. M[i] == M[longestIndex] - 1, 说明在以array[i]为结尾的longest ascending subsequence长度正好比array[longestIndex]为结尾的longest ascending subsequence的长度小1。
         for (int i = longestIndex - 1; i >= 0 && curIndex >= 0; --i) {
             if (array[i] < array[longestIndex] && M[i] == M[longestIndex] - 1) {
                 res[curIndex--] = array[i];

@@ -11,7 +11,6 @@ public class SevenPuzzle {
 
         Map<Board, Integer> boardStep = new HashMap<>();
         Board start = new Board(new int[]{0, 1, 2, 3, 4, 5, 6, 7});
-        Board end = new Board(values);
         q.offer(start);
         boardStep.put(start, 0);
 

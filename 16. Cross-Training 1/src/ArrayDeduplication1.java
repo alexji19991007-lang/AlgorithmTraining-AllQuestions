@@ -8,7 +8,7 @@ public class ArrayDeduplication1 {
         }
         int end = 1;
         for (int i = 1; i < array.length; ++i) {
-            if (array[i] != array[i - 1]) {
+            if (array[i] != array[end - 1]) {
                 array[end++] = array[i];
             }
         }

@@ -5,7 +5,8 @@ public class CheckIfBTIsCompleted {
         if (root == null) {
             return true;
         }
-        Queue<TreeNode> q = new ArrayDeque<>();
+        // We must use a linked list here because ArrayDeque does not support null.
+        Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         while (q.peek() != null) {
             TreeNode cur = q.poll();

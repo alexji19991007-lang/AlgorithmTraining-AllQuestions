@@ -5,30 +5,48 @@ import java.util.Comparator;
 public class LargestSetOfPointsWithPositiveSlope {
     public int largest(Point[] points) {
         if (points.length <= 1) {
-            return 0;
+            return points.length;
         }
-        // 根据x大小排序，之后我们要做的就是找到最长的increasing subsequence of y
         Arrays.sort(points, new MyComparator());
-        int res = 0;
-        int[] longest = new int[points.length];
-        for (int i = 0; i < longest.length; ++i) {
-            for (int j = 0; j < i; ++j) {
-                if (points[j].y < points[i].y) {
-                    longest[i] = Math.max(longest[i], longest[j]);
-                }
+        int[] smallestEnding = new int[points.length + 1];
+        smallestEnding[1] = points[0].y;
+        int res = 1;
+        for (int i = 1; i < points.length; ++i) {
+            int index = find(smallestEnding, 0, res, points[i].y);
+            if (index == res) {
+                smallestEnding[++res] = points[i].y;
+            } else {
+                smallestEnding[index + 1] = points[i].y;
             }
-            longest[i]++;
-            res = Math.max(res, longest[i]);
         }
         return res > 1 ? res : 0;
+    }
+
+    public int find(int[] smallestEnding, int left, int right, int target) {
+        while (left + 1 < right) {
+            int mid = left + (right - left) / 2;
+            if (smallestEnding[mid] >= target) {
+                right = mid - 1;
+            } else {
+                left = mid;
+            }
+        }
+        if (smallestEnding[right] < target) {
+            return right;
+        }
+        if (smallestEnding[left] < target) {
+            return left;
+        }
+        return 0;
     }
 
     static class MyComparator implements Comparator<Point> {
         @Override
         public int compare(Point p1, Point p2) {
-            // x不同，谁x小谁排在前面
-            // x相同，谁y大谁排在前面(为了eliminate slope = infinity的情况，这种情况不算increasing)
-            return p1.x != p2.x ? p1.x - p2.x : p2.y - p1.y;
+            if (p1.x == p2.x) {
+                return p1.y > p2.y ? -1 : 1;
+            }
+            return p1.x < p2.x ? -1 : 1;
         }
     }
 }

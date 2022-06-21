@@ -16,17 +16,21 @@ public class FirstNonRepeatingCharacterInStream {
 
     // head is a dummy head
     private Node head;
-    // tail points to the last element in the list, originally same as head
+    // tail is a dummy tail
     private Node tail;
+    // how many non-repeating elements (in the linked list) so far
+    private int size;
     // maps the single occurrence of a character to its corresponding node
     private Map<Character, Node> singled;
     // tracks which node has already occurred more than once
     private Set<Character> repeated;
 
     public FirstNonRepeatingCharacterInStream() {
+        head = new Node(null);
         tail = new Node(null);
-        tail.next = tail.prev = tail;
-        head = tail;
+        head.next = tail;
+        tail.prev = head;
+        size = 0;
         singled = new HashMap<>();
         repeated = new HashSet<>();
     }
@@ -54,22 +58,25 @@ public class FirstNonRepeatingCharacterInStream {
         return head.next.ch;
     }
 
-    private void append(Node node) {
-        singled.put(node.ch, node);
-        tail.next = node;
-        node.prev = tail;
-        node.next = head;
-        tail = tail.next;
+    private void append(Node n) {
+        singled.put(n.ch, n);
+        Node curLast = tail.prev;
+        curLast.next = n;
+        n.prev = curLast;
+        n.next = tail;
+        tail.prev = n;
+        size++;
     }
 
-    private void remove(Node node) {
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
-        if (node == tail) {
-            tail = node.prev;
-        }
-        node.prev = node.next = null;
-        repeated.add(node.ch);
-        singled.remove(node.ch);
+    private void remove(Node n) {
+        repeated.add(n.ch);
+        singled.remove(n.ch);
+        Node prevNode = n.prev;
+        Node nextNode = n.next;
+        prevNode.next = nextNode;
+        nextNode.prev = prevNode;
+        n.next = null;
+        n.prev = null;
+        size--;
     }
 }

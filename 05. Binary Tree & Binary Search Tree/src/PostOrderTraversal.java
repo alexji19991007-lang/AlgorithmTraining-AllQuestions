@@ -26,23 +26,33 @@ public class PostOrderTraversal {
         mStack.offerFirst(root);
         while (!mStack.isEmpty()) {
             TreeNode cur = mStack.peekFirst();
+            // Case 1: Visiting downward
             if (prev == null || cur == prev.left || cur == prev.right) {
+                // Continue visiting downward, but only in one direction per time
                 if (cur.left != null) {
                     mStack.offerFirst(cur.left);
                 } else if (cur.right != null) {
                     mStack.offerFirst(cur.right);
                 } else {
+                    // If no left or right subtree, then we can add this node to result
                     res.add(cur.key);
                     mStack.pollFirst();
                 }
-            } else if (prev == cur.left) {
+            }
+            // Case 2: Returning from left
+            else if (prev == cur.left) {
+                // See if we can proceed to visiting the right subtree
                 if (cur.right != null) {
                     mStack.offerFirst(cur.right);
                 } else {
+                    // If right subtree, then we can add this node to result
                     res.add(cur.key);
                     mStack.pollFirst();
                 }
-            } else {
+            }
+            // Case 3: Returning from right
+            else {
+                // Both left and right subtrees are finished, we can add this node to the result
                 res.add(cur.key);
                 mStack.pollFirst();
             }

@@ -2,7 +2,7 @@ import java.util.*;
 
 // TC using min heap: 1. Heapify all elements O(n);
 //                    2. Call pop() k times to get k smallest elements O(k * log(n))
-//                    O(n + k * logn(n))
+//                    O(n + k * log(n))
 // TC using max heap: 1. Call insert k times O(k * log(k));
 //                    2. Iterate over the remaining n - k elements one by one O((n-k) * log(k))
 //                    O(k * log(k) + (n - k) * log(k)) = O(n * log(k))

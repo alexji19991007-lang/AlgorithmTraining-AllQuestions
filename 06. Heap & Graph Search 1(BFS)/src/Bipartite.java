@@ -23,7 +23,8 @@ public class Bipartite {
             GraphNode cur = q.poll();
             int curGroup = visited.get(cur);
             int neighborGroup = curGroup == 0 ? 1 : 0;
-            for (GraphNode neighbor : node.neighbors) {
+            // Note here, it should be cur's neighbors, not node's neighbors
+            for (GraphNode neighbor : cur.neighbors) {
                 if (!visited.containsKey(neighbor)) {
                     q.offer(neighbor);
                     visited.put(neighbor, neighborGroup);

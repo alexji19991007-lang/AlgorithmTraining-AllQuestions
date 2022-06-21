@@ -1,27 +1,24 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class MaxWaterTrapped2 {
     public int maxTrapped(int[][] matrix) {
-        int rows = matrix.length;
-        int cols = matrix[0].length;
+        int rows = matrix.length, cols = matrix[0].length;
         if (rows < 3 || cols < 3) {
             return 0;
         }
-        PriorityQueue<Pair> minHeap = new PriorityQueue<>();
+        Queue<Bar> minHeap = new PriorityQueue<>();
         boolean[][] visited = new boolean[rows][cols];
         processBorder(matrix, visited, minHeap, rows, cols);
         int res = 0;
         while (!minHeap.isEmpty()) {
-            Pair cur = minHeap.poll();
-            List<Pair> neighbors = allNeighbors(cur, matrix);
-            for (Pair nei : neighbors) {
-                if (visited[nei.x][nei.y]) {
-                    continue;
-                }
+            Bar cur = minHeap.poll();
+            List<Bar> unvisitedNeighbors = getUnvisitedNeighbors(cur, matrix, visited);
+            for (Bar nei : unvisitedNeighbors) {
                 visited[nei.x][nei.y] = true;
-                res += Math.max(cur.height - nei.height, 0);
+                res += Math.max(0, cur.height - nei.height);
                 nei.height = Math.max(cur.height, nei.height);
                 minHeap.offer(nei);
             }
@@ -29,57 +26,56 @@ public class MaxWaterTrapped2 {
         return res;
     }
 
-    public void processBorder(int[][] matrix, boolean[][] visited, PriorityQueue<Pair> minHeap, int rows, int cols) {
-        // Process the top and bottom row.
-        for (int j = 0; j < cols; ++j) {
-            minHeap.offer(new Pair(0, j, matrix[0][j]));
-            minHeap.offer(new Pair(rows - 1, j, matrix[rows - 1][j]));
-            visited[0][j] = true;
-            visited[rows - 1][j] = true;
-        }
-        // Process the leftmost and rightmost column (except for the row which has already been processed above)
-        for (int i = 1; i < rows - 1; ++i) {
-            minHeap.offer(new Pair(i, 0, matrix[i][0]));
-            minHeap.offer(new Pair(i, cols - 1, matrix[i][cols - 1]));
+    public void processBorder(int[][] matrix, boolean[][] visited, Queue<Bar> minHeap, int rows, int cols) {
+        for (int i = 0; i < rows; ++i) {
+            minHeap.offer(new Bar(i, 0, matrix[i][0]));
             visited[i][0] = true;
+            minHeap.offer(new Bar(i, cols - 1, matrix[i][cols - 1]));
             visited[i][cols - 1] = true;
         }
+        for (int j = 1; j < cols - 1; ++j) {
+            minHeap.offer(new Bar(0, j, matrix[0][j]));
+            visited[0][j] = true;
+            minHeap.offer(new Bar(rows - 1, j, matrix[rows - 1][j]));
+            visited[rows - 1][j] = true;
+        }
     }
 
-    public List<Pair> allNeighbors(Pair cur, int[][] matrix) {
-        List<Pair> neis = new ArrayList<>();
-        if (cur.x + 1 < matrix.length) {
-            neis.add(new Pair(cur.x + 1, cur.y, matrix[cur.x + 1][cur.y]));
+    public List<Bar> getUnvisitedNeighbors(Bar cur, int[][] matrix, boolean[][] visited) {
+        List<Bar> unvisitedNei = new ArrayList<>();
+        int curX = cur.x, curY = cur.y;
+        if (curX + 1 < matrix.length && !visited[curX + 1][curY]) {
+            unvisitedNei.add(new Bar(curX + 1, curY, matrix[curX + 1][curY]));
         }
-        if (cur.x - 1 >= 0) {
-            neis.add(new Pair(cur.x - 1, cur.y, matrix[cur.x - 1][cur.y]));
+        if (curX - 1 >= 0 && !visited[curX - 1][curY]) {
+            unvisitedNei.add(new Bar(curX - 1, curY, matrix[curX - 1][curY]));
         }
-        if (cur.y + 1 < matrix[0].length) {
-            neis.add(new Pair(cur.x, cur.y + 1, matrix[cur.x][cur.y + 1]));
+        if (curY + 1 < matrix[0].length && !visited[curX][curY + 1]) {
+            unvisitedNei.add(new Bar(curX, curY + 1, matrix[curX][curY + 1]));
         }
-        if (cur.y - 1 >= 0) {
-            neis.add(new Pair(cur.x, cur.y - 1, matrix[cur.x][cur.y - 1]));
+        if (curY - 1 >= 0 && !visited[curX][curY - 1]) {
+            unvisitedNei.add(new Bar(curX, curY - 1, matrix[curX][curY - 1]));
         }
-        return neis;
+        return unvisitedNei;
     }
 
-    static class Pair implements Comparable<Pair> {
+    static class Bar implements Comparable<Bar> {
         int x;
         int y;
         int height;
 
-        Pair(int x, int y, int height) {
+        Bar(int x, int y, int height) {
             this.x = x;
             this.y = y;
             this.height = height;
         }
 
         @Override
-        public int compareTo(Pair another) {
-            if (this.height == another.height) {
+        public int compareTo(Bar other) {
+            if (this.height == other.height) {
                 return 0;
             }
-            return this.height < another.height ? -1 : 1;
+            return this.height < other.height ? -1 : 1;
         }
     }
 }

@@ -7,6 +7,17 @@ public class LRUCache<K, V> {
         V value;
         DLinkedNode<K, V> prev;
         DLinkedNode<K, V> next;
+
+        public DLinkedNode() {
+
+        }
+
+        public DLinkedNode (K key, V value) {
+            this.key = key;
+            this.value = value;
+            this.prev = null;
+            this.next = null;
+        }
     }
 
     public Map<K, DLinkedNode<K, V>> cache;
@@ -28,8 +39,7 @@ public class LRUCache<K, V> {
     public void set(K key, V value) {
         DLinkedNode<K, V> node = cache.getOrDefault(key, null);
         if (node == null) {
-            DLinkedNode<K, V> newNode = new DLinkedNode<K, V>();
-            newNode.value = value;
+            DLinkedNode<K, V> newNode = new DLinkedNode<>(key, value);
             cache.put(key, newNode);
             addNode(newNode);
             mSize++;

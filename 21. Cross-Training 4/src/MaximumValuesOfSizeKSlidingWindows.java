@@ -19,7 +19,7 @@ public class MaximumValuesOfSizeKSlidingWindows {
             }
             // It is possible that the head is out of our current sliding window, so
             // we need to discard it as well
-            if (!deque.isEmpty() && deque.peekFirst() <= i - k) {
+            if (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
                 deque.pollFirst();
             }
             deque.offerLast(i);

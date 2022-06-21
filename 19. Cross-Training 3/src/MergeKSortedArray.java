@@ -3,7 +3,7 @@ import java.util.PriorityQueue;
 
 public class MergeKSortedArray {
     public int[] merge(int[][] arrayOfArrays) {
-        PriorityQueue<Entry> minHeap = new PriorityQueue<>(11, new MyComparator());
+        PriorityQueue<Entry> minHeap = new PriorityQueue<>(new MyComparator());
         int totalLength = 0;
         for (int i = 0; i < arrayOfArrays.length; ++i) {
             int[] array = arrayOfArrays[i];

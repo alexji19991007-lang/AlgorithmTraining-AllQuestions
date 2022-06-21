@@ -5,6 +5,7 @@ public class LongestAscendingSubsequence {
         }
         // The smallest ending value of all the ascending subsequences with length i
         int longest = 1;
+        // smallestEnding[i] = for the longest ascending subsequence with length i, what is the smallest ending value of it?
         int[] smallestEnding = new int[array.length + 1];
         smallestEnding[1] = array[0];
         for (int i = 1; i < array.length; ++i) {

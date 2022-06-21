@@ -2,6 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FactorCombinations {
+    public static void main(String[] args) {
+        FactorCombinations test = new FactorCombinations();
+        List<List<Integer>> res = test.combinations(24);
+        System.out.println(res);
+    }
+
     public List<List<Integer>> combinations(int target) {
         List<List<Integer>> res = new ArrayList<>();
         if (target <= 1) {
@@ -20,7 +26,6 @@ public class FactorCombinations {
             }
             return;
         }
-        helper(target, factors, index + 1, cur, res);
         int factor = factors.get(index);
         int size = cur.size();
         while (target % factor == 0) {
@@ -28,7 +33,11 @@ public class FactorCombinations {
             target /= factor;
             helper(target, factors, index + 1, cur, res);
         }
-        cur.subList(size, cur.size()).clear();
+        for (int i = cur.size() - 1; i > size - 1; --i) {
+            target *= cur.get(i);
+            cur.remove(i);
+        }
+        helper(target, factors, index + 1, cur, res);
     }
 
     public List<Integer> getFactors(int target) {

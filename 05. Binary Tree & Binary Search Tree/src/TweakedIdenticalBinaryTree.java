@@ -1,6 +1,5 @@
-import java.util.*;
-
 public class TweakedIdenticalBinaryTree {
+    // TC: O(4^(logn)) = O(2^(2logn)) = O(2^log(n^2)) = O(n^2)， assuming the tree is balanced
     public boolean isTweakedIdentical(TreeNode one, TreeNode two) {
         if (one == null && two == null) {
             return true;

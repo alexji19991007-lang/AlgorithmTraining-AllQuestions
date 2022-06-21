@@ -10,19 +10,24 @@ public class CanIWin2 {
         for (int i = 0; i < n - 1; ++i) {
             dp[i][i + 1] = Math.max(nums[i], nums[i + 1]);
         }
-        for (int offset = 2; offset < n; ++offset) {
-            for (int row = 0; row < n - offset; ++row) {
-                // 我们现在要从nums[row ... (row + offset)]中选择
-                // takeLeft: 如果我们当前选择nums[row]那一块，那还剩下来nums[row + 1 ... (row + offset)]
-                int takeLeft = nums[row] +
-                        (nums[row + 1] > nums[row + offset] ? dp[row + 2][row + offset] : dp[row + 1][row + offset - 1]);
-                // takeRight: 如果我们当前选择nums[row + offset]那一块，那还剩下来nums[row ... (row + offset - 1)]
-                int takeRight = nums[row + offset] +
-                        (nums[row] > nums[row + offset - 1] ? dp[row + 1][row + offset - 1] : dp[row][row + offset - 2]);
-                // 对手会在剩下来中取多的那一头
-                dp[row][row + offset] = Math.max(takeLeft, takeRight);
+        // size = the current game size. We already have solution for game size 1 and 2 above, so start from 3.
+        for (int size = 3; size <= n; ++size) {
+            for (int row = 0; row + size - 1 < n; ++row) {
+                // 我们现在要从nums[leftIndex ... rightIndex]中选择
+                // Left boundary of the game under consideration
+                int leftIndex = row;
+                // Right boundary of the game under consideration
+                int rightIndex = row + size - 1;
+                // takeLeft: 如果我们当前选择最左边，那还剩下来nums[(leftIndex + 1) ... rightIndex]
+                int takeLeft = nums[leftIndex] + (nums[leftIndex + 1] > nums[rightIndex] ?
+                        dp[leftIndex + 2][rightIndex] : dp[leftIndex + 1][rightIndex - 1]);
+                // takeRight: 如果我们当前选择最右边，那还剩下来nums[leftIndex ... (rightIndex - 1)]
+                int takeRight = nums[rightIndex] + (nums[leftIndex] > nums[rightIndex - 1] ?
+                        dp[leftIndex + 1][rightIndex - 1] : dp[leftIndex][rightIndex - 2]);
+                // 注意：对手会在我们取完后从剩下的两头中选取较大的那个数字，所以我们要考虑在去掉较大数字后，小一号game的最终结果 + 当前选择 = 当前game的结果
+                dp[leftIndex][rightIndex] = Math.max(takeLeft, takeRight);
             }
         }
-        return dp[0][nums.length - 1];
+        return dp[0][n - 1];
     }
 }

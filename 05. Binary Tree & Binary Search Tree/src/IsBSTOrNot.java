@@ -1,4 +1,4 @@
-public class IsBinaryTreeOrNot {
+public class IsBSTOrNot {
     public boolean isBST(TreeNode root) {
         return isBSTUntil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
