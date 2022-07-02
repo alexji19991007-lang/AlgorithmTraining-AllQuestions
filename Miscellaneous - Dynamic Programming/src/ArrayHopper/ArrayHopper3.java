@@ -14,19 +14,20 @@ public class ArrayHopper3 {
         System.out.println(test.minJump(array));
     }
 
+    // Easier way of thinking: add another point at the end of the array, then we want to jump to the new end point
+    //                         then it's the same as ArrayHopper2.
     public int minJump(int[] array) {
-        int[] M = new int[array.length];
-        for (int i = array.length - 1; i >= 0; --i) {
-            M[i] = Integer.MAX_VALUE;
-            for (int j = i + 1; j <= i + array[i] && j < array.length + 1; ++j) {
-                if (j >= array.length) {
-                    M[i] = 1;
-                    break;
-                } else if (M[j] != Integer.MAX_VALUE && M[i] > M[j] + 1) {
+        int n = array.length;
+        int[] M = new int[n + 1];
+        M[n] = 0;
+        for (int i = n - 1; i >= 0; --i) {
+            M[i] = -1;
+            for (int j = i + 1; j <= Math.min(array[i] + i, n); ++j) {
+                if (array[i] + i >= j && M[j] != -1 && (M[i] == -1 || M[i] > M[j] + 1)) {
                     M[i] = M[j] + 1;
                 }
             }
         }
-        return M[0] == Integer.MAX_VALUE ? -1 : M[0];
+        return M[0];
     }
 }

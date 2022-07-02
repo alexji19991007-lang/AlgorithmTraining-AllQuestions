@@ -9,7 +9,7 @@ public class ArrayDeduplication2 {
         }
         int slow = 2;
         for (int i = 2; i < array.length; ++i) {
-            if (array[i] != array[slow - 2]) {
+            if (array[i] != array[slow - 2] || array[i] != array[slow - 1]) {
                 array[slow++] = array[i];
             }
         }

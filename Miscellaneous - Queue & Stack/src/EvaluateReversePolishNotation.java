@@ -1,6 +1,7 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Stack;
 
 public class EvaluateReversePolishNotation {
     public static void main(String[] args) {
@@ -9,34 +10,34 @@ public class EvaluateReversePolishNotation {
     }
 
     public static int evalRPN(String[] tokens) {
-        Stack<Integer> operands = new Stack<>();
+        Deque<Integer> operands = new ArrayDeque<>();
         Set<String> operators = new HashSet<>();
         operators.add("+");
         operators.add("-");
         operators.add("*");
         operators.add("/");
-        for (String item : tokens) {
-            if (operators.contains(item)) {
-                int right = operands.pop();
-                int left = operands.pop();
-                switch (item) {
+        for (String s : tokens) {
+            if (operators.contains(s)) {
+                int right = operands.pollFirst();
+                int left = operands.pollFirst();
+                switch (s) {
                     case "+":
-                        operands.push(left + right);
+                        operands.offerFirst(left + right);
                         break;
                     case "-":
-                        operands.push(left - right);
+                        operands.offerFirst(left - right);
                         break;
                     case "*":
-                        operands.push(left * right);
+                        operands.offerFirst(left * right);
                         break;
                     case "/":
-                        operands.push(left / right);
+                        operands.offerFirst(left / right);
                         break;
                 }
             } else {
-                operands.push(Integer.valueOf(item));
+                operands.offerFirst(Integer.valueOf(s));
             }
         }
-        return operands.pop();
+        return operands.pollFirst();
     }
 }

@@ -11,35 +11,35 @@ public class MedianOfTwoUnsortedArrays {
     public double median(int[] a, int[] b) {
         // smallestLargerThanTarget[0]: 在element总数为偶数的情况下，大于median的最小的数字。这个数字将会被用来计算真正的median
         // smallestLargerThanTarget[1]: 每次partition结束后，大于当前pivot的最小的数字
-        int[] smallestLargerThanTarget = new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE};
+        int[] smallestLargerThanTarget = {Integer.MAX_VALUE, Integer.MAX_VALUE};
         int left = 0, right = a.length + b.length - 1;
-        int target = (a.length + b.length - 1) / 2;
+        int targetIndex = right / 2;
         boolean findTarget = false;
 
         while (!findTarget) {
             // quick select:
             // 随机选取一个pivot，把所有大于pivot的数字放到pivot后面，所有小于pivot的数字放到pivot前面，返回partition后pivot所在的index
-            int mid = partition(a, b, left, right, smallestLargerThanTarget);
-            if (mid == target) {
+            int pivotIndex = partition(a, b, left, right, smallestLargerThanTarget);
+            if (pivotIndex == targetIndex) {
                 // 如果pivot所在的index正好是median的index
-                if (target < right) {
+                if (targetIndex < right) {
                     // right > target说明在这次partition里面存在比pivot大的数字
                     smallestLargerThanTarget[0] = smallestLargerThanTarget[1];
                 }
                 findTarget = true;
-            } else if (mid > target) {
+            } else if (pivotIndex > targetIndex) {
                 // 如果pivot所在的index大于median的index，我们下一次partition只关注比当前pivot小的数字
                 // (i.e. elements to the left of pivot)
-                smallestLargerThanTarget[0] = getValue(a, b, mid);
-                right = mid - 1;
+                smallestLargerThanTarget[0] = getValue(a, b, pivotIndex);
+                right = pivotIndex - 1;
             } else {
                 // 如果pivot所在的index小于median的index，我们下一次partition只关注比当前pivot大的数字
                 // (i.e. elements to the right of pivot)
-                left = mid + 1;
+                left = pivotIndex + 1;
             }
         }
 
-        int targetValue = getValue(a, b, target);
+        int targetValue = getValue(a, b, targetIndex);
         return (a.length + b.length) % 2 == 0 ? (smallestLargerThanTarget[0] + targetValue) / 2.0 : targetValue;
     }
 

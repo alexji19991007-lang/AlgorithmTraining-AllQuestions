@@ -20,9 +20,9 @@ public class SearchInShiftedSortedArray1 {
             }
             // Two cases for left = mid + 1:
             // Case 1: array[mid] < array[right] --> 从mid到right，array elements升序排列
-            //         within(target, array[mid], array[right]) --> target以大小看右侧区间中
+            //         within(target, array[mid], array[right]) --> target在右侧区间中
             // Case 2: array[left] < array[mid] --> 从left到mid，array elements升序排列
-            //         !within(target, array[left], array[mid]) --> target以大小看不在左侧区间中
+            //         !within(target, array[left], array[mid]) --> target不在左侧区间中
             if ((array[mid] < array[right] && within(target, array[mid], array[right]))
             || (array[left] < array[mid] && !within(target, array[left], array[mid]))) {
                 left = mid + 1;

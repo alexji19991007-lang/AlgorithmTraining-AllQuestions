@@ -1,39 +1,62 @@
 public class SearchInShiftedSortedArray2 {
+    public static void main(String[] args) {
+//        int[] array = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+        int[] array = {3, 1, 1, 1, 1, 3};
+        System.out.println(findPivot(array, 0, 5));
+        System.out.println(search(array, 3));
+    }
+
     public static int search(int[] array, int target) {
         if (array == null || array.length == 0) {
             return -1;
         }
-        int left = 0, right = array.length - 1;
-        while (left < right - 1) {
+        int pivot = findPivot(array, 0, array.length - 1);
+        if (pivot == -1) {
+            return firstOccur(array, 0, array.length - 1, target);
+        } else if (target < array[0]) {
+            return firstOccur(array, pivot + 1, array.length - 1, target);
+        }
+        return firstOccur(array, 0, pivot, target);
+    }
+
+    public static int findPivot(int[] array, int left, int right) {
+        while (left < right) {
             int mid = left + (right - left) / 2;
-            if (array[mid] == target) return mid;
-            if (array[left] == target) return left;
-            if (array[right] == target) return right;
-            // Two cases for left = mid + 1: we can guarantee that target is not in the left range
-            // Case 1: array[mid] < array[right] --> 从mid到right，array elements升序排列
-            //         within(target, array[mid], array[right]) --> target以大小看右侧区间中
-            // Case 2: array[left] < array[mid] --> 从left到mid，array elements升序排列
-            //         !within(target, array[left], array[mid]) --> target以大小看不在左侧区间中
-            if ((array[mid] < array[right] && within(target, array[mid], array[right]))
-                    || (array[left] < array[mid] && !within(target, array[left], array[mid]))) {
+            if (mid < right && array[mid] > array[mid + 1]) {
+                return mid;
+            } else if (mid > left && array[mid] < array[mid - 1]) {
+                return mid - 1;
+            } else if (array[left] == array[mid]) {
+                left++;
+            } else if (array[right] == array[mid]) {
+                right--;
+            } else if (array[left] >= array[mid]) {
+                right = mid - 1;
+            } else {
                 left = mid + 1;
             }
-            // Two cases for right = mid - 1: we can guarantee that target is not in the right range
-            // Two cases are exactly opposite to those for left = mid + 1;
-            else if ((array[mid] < array[right] && !within(target, array[mid], array[right]))
-                    || (array[left] < array[mid] && within(target, array[left], array[mid]))) {
-                right = mid - 1;
-            } else { // 3..3....3 --> 无法判断到底在左边还是在右边
-                left = left + 1;
-                right = right - 1;
-            }
         }
-        if (array[left] == target) return left;
-        if (array[right] == target) return right;
         return -1;
     }
 
-    public static boolean within(int x, int left, int right) {
-        return x >= left && x <= right;
+    public static int firstOccur(int[] array, int left, int right, int target) {
+        while (left < right - 1) { // Terminate when left neighbors right
+            int mid = left + (right - left) / 2;
+            if (array[mid] == target) {
+                right = mid; // the current mid may still be the correct solution
+            } else if (array[mid] < target) {
+                left = mid + 1; // does not equal, directly exclude (we can also not + or - 1, which is less aggressive)
+            } else {
+                right = mid - 1;
+            }
+        }
+        // Since we want to get first occurrence, check left first and then right
+        if (array[left] == target) {
+            return left;
+        }
+        if (array[right] == target) {
+            return right;
+        }
+        return -1;
     }
 }

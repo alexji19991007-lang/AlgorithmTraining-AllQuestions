@@ -19,38 +19,31 @@ public class ArrayHopper4 {
     }
 
     public int minJump(int[] array, int index) {
-        if (array.length == 1 || index == array.length - 1) {
+        if (array.length == 0 || index == array.length - 1) {
             return 0;
         }
-        Map<Integer, Integer> visited = new HashMap<>();
         Queue<Integer> queue = new ArrayDeque<>();
+        Map<Integer, Integer> visited = new HashMap<>();
         queue.offer(index);
         visited.put(index, 0);
-        // Do BFS. Note that each index will be put into the queue exactly once.
         while (!queue.isEmpty()) {
             int curIndex = queue.poll();
             int curStep = visited.get(curIndex);
             int maxJump = array[curIndex];
-            for (int i = maxJump; i >= 0; --i) {
-                if (curIndex + i == array.length - 1) {
+            for (int i = maxJump; i > 0; --i) {
+                if (curIndex + i >= array.length - 1) {
                     return curStep + 1;
                 }
-                // check right
-                if (inRange(array.length, curIndex + i) && !visited.containsKey(curIndex + i)) {
+                if (curIndex + i < array.length && !visited.containsKey(curIndex + i)) {
                     queue.offer(curIndex + i);
                     visited.put(curIndex + i, curStep + 1);
                 }
-                // check left
-                if (inRange(array.length, curIndex - i) && !visited.containsKey(curIndex - i)) {
+                if (curIndex - i >= 0 && !visited.containsKey(curIndex - i)) {
                     queue.offer(curIndex - i);
                     visited.put(curIndex - i, curStep + 1);
                 }
             }
         }
         return -1;
-    }
-
-    private boolean inRange(int length, int index) {
-        return index < length && index >= 0;
     }
 }
