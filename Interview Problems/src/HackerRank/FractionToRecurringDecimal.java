@@ -1,3 +1,5 @@
+package HackerRank;
+
 import java.util.HashMap;
 
 public class FractionToRecurringDecimal {

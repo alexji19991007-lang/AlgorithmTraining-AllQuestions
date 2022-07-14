@@ -12,16 +12,16 @@ public class SlidingWindowMaximum {
         System.out.println(Arrays.toString(res.mean));
         System.out.println(Arrays.toString(res.last));
         System.out.println();
-        ResultArrays[] allRes = test.findAllInfo(nums);
-        int i = 1;
-        for (ResultArrays resArr : allRes) {
-            System.out.println("Window Size: " + i++);
-            System.out.println(Arrays.toString(resArr.max));
-            System.out.println(Arrays.toString(resArr.min));
-            System.out.println(Arrays.toString(resArr.mean));
-            System.out.println(Arrays.toString(resArr.last));
-            System.out.println();
-        }
+//        ResultArrays[] allRes = test.findAllInfo(nums);
+//        int i = 1;
+//        for (ResultArrays resArr : allRes) {
+//            System.out.println("Window Size: " + i++);
+//            System.out.println(Arrays.toString(resArr.max));
+//            System.out.println(Arrays.toString(resArr.min));
+//            System.out.println(Arrays.toString(resArr.mean));
+//            System.out.println(Arrays.toString(resArr.last));
+//            System.out.println();
+//        }
     }
 
     public ResultArrays[] findAllInfo(int[] nums) {

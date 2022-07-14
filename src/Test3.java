@@ -5,6 +5,8 @@ public class Test3 {
         Integer[] x = {2, 5, 4, 6, 8};
         List<Integer> space = Arrays.asList(x);
         System.out.println(segment(3, space));
+        space.sort(Comparator.naturalOrder());
+        System.out.println(space);
     }
 
     public static int segment(int x, List<Integer> space) {
