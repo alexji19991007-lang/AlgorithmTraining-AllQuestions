@@ -1,11 +1,11 @@
 public class StringCompression {
     public static void main(String[] args) {
         StringCompression test = new StringCompression();
-        String s = "aabbbbbbbbbbbb";
+        String s = "aabbbbbbbbbbbbc";
         System.out.println(test.compress(s.toCharArray()));
     }
 
-    public int compress(char[] chars) {
+    public String compress(char[] chars) {
         int slow = 0, fast = 0;
         int newLength = 0;
         // 第一遍从左往右Scan，做两件事情
@@ -23,7 +23,7 @@ public class StringCompression {
             slow += len;
             newLength += len + 1; // "+1"是用来copy字母本身
         }
-        return newLength;
+        return new String(chars, 0, newLength);
     }
 
     public int copyDigits(char[] input, int slow, int count) {
