@@ -7,7 +7,7 @@ import java.util.Queue;
 public class PassingIntersection {
     public static void main(String[] args) {
         PassingIntersection test = new PassingIntersection();
-        int[] arrivalTime = {0, 0, 0, 0};
+        int[] arrivalTime = {0, 0, 1, 4};
         int[] from = {0, 1, 1, 0};
         System.out.println(Arrays.toString(test.passing(arrivalTime, from)));
     }
@@ -29,7 +29,7 @@ public class PassingIntersection {
             int[] mainCar = mainStreet.peek();
             int[] firstCar = firstStreet.peek();
             if (mainCar[1] > curTime && firstCar[1] > curTime) {
-                curTime++;
+                curTime = Math.min(mainCar[1], firstCar[1]);
                 isFirstStreet = true;
                 continue;
             }
@@ -54,7 +54,7 @@ public class PassingIntersection {
         }
         while (!mainStreet.isEmpty()) {
             int[] mainCar = mainStreet.poll();
-            if (mainCar[0] <= curTime) {
+            if (mainCar[1] <= curTime) {
                 res[mainCar[0]] = curTime;
             } else {
                 res[mainCar[0]] = mainCar[1];
@@ -64,7 +64,7 @@ public class PassingIntersection {
         }
         while (!firstStreet.isEmpty()) {
             int[] firstCar = firstStreet.poll();
-            if (firstCar[0] <= curTime) {
+            if (firstCar[1] <= curTime) {
                 res[firstCar[0]] = curTime;
             } else {
                 res[firstCar[0]] = firstCar[1];

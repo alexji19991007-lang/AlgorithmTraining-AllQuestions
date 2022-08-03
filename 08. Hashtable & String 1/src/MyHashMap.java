@@ -75,7 +75,7 @@ public class MyHashMap<K, V> {
             }
             node = node.next;
         }
-        // Case 2: If the key does not exists in the hash map
+        // Case 2: If the key does not exist in the hash map
         // Append the new node before the head and update the new head.
         Node<K, V> newNode = new Node<>(key, value);
         newNode.next = head;
