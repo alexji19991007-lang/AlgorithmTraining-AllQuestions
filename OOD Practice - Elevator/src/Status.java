@@ -1,5 +1,6 @@
 public enum Status {
     UP,
     DOWN,
-    IDLE
+    IDLE,
+    OVERLOADED,
 }
