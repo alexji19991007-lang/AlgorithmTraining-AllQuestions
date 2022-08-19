@@ -6,7 +6,7 @@ import java.util.Queue;
 public class OrderBook {
     public static void main(String[] args) {
         OrderBook test = new OrderBook();
-        String[][] orders = {{"150", "10", "buy"}, {"165", "7", "sell"}, {"168", "3", "buy"}, {"155", "5", "sell"}, {"166", "8", "buy"}};
+        String[][] orders = {{"150", "5", "buy"}, {"190", "1", "sell"}, {"200", "1", "sell"}, {"100", "9", "buy"}, {"140", "8", "sell"}, {"210", "4", "buy"}};
         System.out.println(test.executedShares(orders));
     }
 
