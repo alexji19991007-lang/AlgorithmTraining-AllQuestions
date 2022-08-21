@@ -60,8 +60,8 @@ public class OrderBook {
             }
             Order sellOrd = sellOrders.poll();
             executedShares += Math.min(sellOrd.quantity, buyOrd.quantity);
-            int newSellQuantity = Math.max(0, sellOrd.quantity - buyOrd.quantity);
-            int newBuyQuantity = Math.max(0, buyOrd.quantity - sellOrd.quantity);
+            double newSellQuantity = Math.max(0, sellOrd.quantity - buyOrd.quantity);
+            double newBuyQuantity = Math.max(0, buyOrd.quantity - sellOrd.quantity);
             sellOrd.quantity = newSellQuantity;
             buyOrd.quantity = newBuyQuantity;
             if (sellOrd.quantity > 0) {
@@ -87,8 +87,8 @@ public class OrderBook {
             }
             Order buyOrd = buyOrders.poll();
             executedShares += Math.min(sellOrd.quantity, buyOrd.quantity);
-            int newSellQuantity = Math.max(0, sellOrd.quantity - buyOrd.quantity);
-            int newBuyQuantity = Math.max(0, buyOrd.quantity - sellOrd.quantity);
+            double newSellQuantity = Math.max(0, sellOrd.quantity - buyOrd.quantity);
+            double newBuyQuantity = Math.max(0, buyOrd.quantity - sellOrd.quantity);
             sellOrd.quantity = newSellQuantity;
             buyOrd.quantity = newBuyQuantity;
             if (buyOrd.quantity > 0) {
@@ -102,10 +102,10 @@ public class OrderBook {
     }
 
     static class Order {
-        int price;
-        int quantity;
+        double price;
+        double quantity;
 
-        public Order(int price, int quantity) {
+        public Order(double price, double quantity) {
             this.price = price;
             this.quantity = quantity;
         }
