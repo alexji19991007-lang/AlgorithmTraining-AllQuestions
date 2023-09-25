@@ -1,4 +1,4 @@
-public class ShapeFactoryClient {
+public class Main {
     private static final ShapeFactory shapeFactory = new ShapeFactory();
 
     public static void main(String[] args) {
