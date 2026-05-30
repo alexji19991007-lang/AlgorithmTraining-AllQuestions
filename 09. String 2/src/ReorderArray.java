@@ -1,7 +1,13 @@
 import java.util.*;
 
 public class ReorderArray {
-    public int[] reorder(int[] array) {
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8};
+        System.out.println(Arrays.toString(reorder(array)));
+    }
+
+
+    public static int[] reorder(int[] array) {
         if (array.length % 2 == 0) {
             shuffleHelper(array, 0, array.length - 1);
         } else {
@@ -10,7 +16,7 @@ public class ReorderArray {
         return array;
     }
 
-    public void shuffleHelper(int[] array, int left, int right) {
+    public static void shuffleHelper(int[] array, int left, int right) {
         // Recursion terminates when left neighbors right.
         if (left + 1 >= right) {
             return;
@@ -28,7 +34,7 @@ public class ReorderArray {
         shuffleHelper(array, left + 2 * (leftMid - left), right);
     }
 
-    public void reverseHelper(int[] input, int left, int right) {
+    public static void reverseHelper(int[] input, int left, int right) {
         if (left >= right) {
             return;
         }
@@ -37,7 +43,7 @@ public class ReorderArray {
         }
     }
 
-    public void swap(int[] input, int left, int right) {
+    public static void swap(int[] input, int left, int right) {
         int temp = input[left];
         input[left] = input[right];
         input[right] = temp;

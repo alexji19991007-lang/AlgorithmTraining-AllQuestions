@@ -22,7 +22,7 @@ public class CombinationsOfCoins {
             if (remain % coins[index] == 0) {
                 sol.add(remain / coins[index]);
                 res.add(new ArrayList<>(sol));
-                sol.remove(sol.size() - 1);
+                sol.remove(sol.size() - 1); // 我们要返回上一层了所以要restore当前这一层到之前的状态！！这就是backtrack！
             }
             return;
         }

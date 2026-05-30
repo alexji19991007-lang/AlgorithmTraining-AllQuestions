@@ -1,4 +1,38 @@
+// k = 8
+// 0 1 2 3 4  5  6  7  8
+// 2 4 6 8 10 12 14 16 18
+// 1 3 5 7 9  11 13 15 17
+
+// Round 1 -- k = 8
+// 2 4 6 8 10 12 14 16 18
+//         ^
+// 1 3 5 7 9  11 13 15 17
+//         ^
+// 9 < 10 --> 9 and all its left elements cannot be the answer
+
+
+// Round 2 -- k = 4
+// 2 4 6 8 10 12 14 16 18
+//   ^
+// x x x x 9  11 13 15 17
+//            ^
+// 4 < 11 --> 4 and all its left elements cannot be the answer
+
+// Round 3 -- k = 2
+// x x 6 8 10 12 14 16 18
+//     ^
+// x x x x 9  11 13 15 17
+//         ^
+// 6 < 9 --> 6 and all its left elements cannot be the answer
+
+// Round 4 -- k = 1
+// x x x 8 10 12 14 16 18
+//       ^
+// x x x x 9  11 13 15 17
+//         ^
+// 8 < 9 --> since k = 1 8 is the final answer
 public class KthSmallestInTwoSortedArrays {
+
     public static void main(String[] args) {
         int[] a = {1, 2, 3, 4};
         int[] b = {5};

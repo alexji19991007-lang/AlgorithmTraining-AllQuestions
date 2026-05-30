@@ -23,7 +23,7 @@ public class AllPermutations1 {
         for (int i = index; i < charList.length; ++i) {
             swap(charList, index, i);
             findPermutations(charList, index + 1, res);
-            swap(charList, index, i);
+            swap(charList, index, i); // this is where backtracking occurs!!! We need to restore to the state before recursion happens
         }
     }
 

@@ -6,7 +6,7 @@ public class GraphNode {
 
     public GraphNode(int key) {
         this.key = key;
-        this.neighbors = new ArrayList<GraphNode>();
+        this.neighbors = new ArrayList<>();
     }
 }
 

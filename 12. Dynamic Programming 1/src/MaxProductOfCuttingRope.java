@@ -1,4 +1,36 @@
 public class MaxProductOfCuttingRope {
+    // 1. What does dp[i] mean?
+    //      dp[i] = The maximum product we can get by cutting a rope of length i
+    //      (We are allowed to either keep a segment as is, or further cut it)
+    // 2. What is the base case?
+    //      dp[1] = 1
+    //      Because when the rope length is 1, the maximum product we can get is 1
+    //      (even though we cannot make a valid cut, this is used to help build larger results)
+    // 3. What is the recurrence relations?
+    //      When we try to compute dp[i], we try every possible first cut position j (1 <= j < i)
+    //      We cut the rope into two parts:
+    //          left part: length j
+    //          right part: length (i - j)
+    //
+    // For the left part (length j), we have two choices:
+    //    3.1 Do not cut it → product = j
+    //    3.2 Cut it further → product = dp[j]
+    //
+    // So the best for left part is: max(j, dp[j])
+    //
+    // For the right part (length i - j), we DO NOT look up dp[i - j]
+    // because we are enumerating all possibilities from left side already
+    // (this avoids duplicate counting)
+    //
+    // So for each j:
+    //
+    // candidate = max(j, dp[j]) * (i - j)
+    //
+    // We take the maximum over all j:
+    //
+    // dp[i] = max over all j in (1, i):
+    //         max(j, dp[j]) * (i - j)
+
     // Make at least 1 cut
     // TC: O(n^2)
     // SC: O(n)
@@ -7,7 +39,7 @@ public class MaxProductOfCuttingRope {
         M[1] = 1;
         for (int i = 2; i < length + 1; ++i) {
             for (int j = 1; j < i; ++j) {
-                // 左大段 --> 怎么切？ --> 查表
+                // 左大段 --> 怎么切？ --> 查
                 // 右小段 --> 不切 直接乘
                 M[i] = Math.max(M[i], Math.max(j, M[j]) * (i - j));
             }

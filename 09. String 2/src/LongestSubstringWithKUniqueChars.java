@@ -2,7 +2,7 @@ import java.util.*;
 
 public class LongestSubstringWithKUniqueChars {
     public static void main(String[] args) {
-        String x = "dabaaebac";
+        String x = "dddabaaebacbcc";
         System.out.println(longest(x, 4));
     }
 

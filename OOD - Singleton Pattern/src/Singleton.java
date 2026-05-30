@@ -1,5 +1,5 @@
 // Eager Initialization
-// 当开销比较大的时候用eager
+// 当开销比较大的时候用eagerSing
 public class Singleton {
     private static final Singleton INSTANCE = new Singleton("This is a Singleton (eager)");
 

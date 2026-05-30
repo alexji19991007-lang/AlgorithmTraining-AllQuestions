@@ -21,7 +21,7 @@ public class AllSubsets1 {
         }
         solution.append(set.charAt(index)); // Select the current character
         findSubsets(set, index + 1, solution, res); // Go to next level
-        solution.deleteCharAt(solution.length() - 1); // Un-select the current character
+        solution.deleteCharAt(solution.length() - 1); // Un-select the current character --> backtrack!!
         findSubsets(set, index + 1, solution, res); // Go to next level
     }
 }

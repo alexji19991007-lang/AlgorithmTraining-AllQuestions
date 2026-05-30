@@ -21,7 +21,7 @@ public class AllValidPermutationsOfParentheses1 {
             findPermutation(n, index + 1, left + 1, right, solution, res);
         }
         if (right < left) {
-            solution[index] = ')';
+            solution[index] = ')'; // 这里直接把我们在访问left child时候加的东西给overwrite了
             findPermutation(n, index + 1, left, right + 1, solution, res);
         }
     }

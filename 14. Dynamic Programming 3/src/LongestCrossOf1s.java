@@ -1,3 +1,55 @@
+// 1. What does dp[i][j] mean?
+// We do NOT use a single dp array.
+// Instead, we compute directional DP:
+//
+// left[i][j]  = number of consecutive 1s ending at (i,j) from left
+// up[i][j]    = number of consecutive 1s ending at (i,j) from top
+// right[i][j] = number of consecutive 1s ending at (i,j) from right
+// down[i][j]  = number of consecutive 1s ending at (i,j) from bottom
+//
+// After merging:
+// leftUp[i][j] = min(left[i][j], up[i][j])
+// rightDown[i][j] = min(right[i][j], down[i][j])
+//
+// Final dp meaning:
+// dp[i][j] = min(leftUp[i][j], rightDown[i][j])
+// It represents the maximum arm length of a cross centered at (i, j).
+
+// 2. What is the base case?
+// If matrix[i][j] == 0:
+//   all directional values = 0
+//
+// If matrix[i][j] == 1:
+//   left[i][j]  = (j == 0 ? 0 : left[i][j - 1]) + 1
+//   up[i][j]    = (i == 0 ? 0 : up[i - 1][j]) + 1
+//   right[i][j] = (j == C - 1 ? 0 : right[i][j + 1]) + 1
+//   down[i][j]  = (i == R - 1 ? 0 : down[i + 1][j]) + 1
+
+// 3. What is the recurrence relation?
+// For each direction:
+//
+// left[i][j]  = (matrix[i][j] == 1) ? left[i][j - 1] + 1 : 0
+// up[i][j]    = (matrix[i][j] == 1) ? up[i - 1][j] + 1 : 0
+// right[i][j] = (matrix[i][j] == 1) ? right[i][j + 1] + 1 : 0
+// down[i][j]  = (matrix[i][j] == 1) ? down[i + 1][j] + 1 : 0
+//
+// Then combine:
+//
+// dp[i][j] = min(
+//     left[i][j],
+//     up[i][j],
+//     right[i][j],
+//     down[i][j]
+// )
+//
+// The result is the maximum dp[i][j] over all cells.
+
+// | 题目                      | 本质          |
+// | -----------------------  | ----------- |
+// | Largest Square of 1s     | 看 block（内部） |
+// | Square Surrounded by 1s  | 看边          |
+// | Largest Cross of 1s      | 看四个方向       |
+
 public class LongestCrossOf1s {
     public int largest(int[][] matrix) {
         int R = matrix.length;

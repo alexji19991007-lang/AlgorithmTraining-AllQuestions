@@ -16,17 +16,20 @@ public class StackByQueues {
 
     /** Removes the element on top of the stack and returns that element. */
     public Integer pop() {
-        Integer prev = q1.poll();
-        Integer cur = q1.poll();
-        while (cur != null) {
-            q2.offer(prev);
-            prev = cur;
-            cur = q1.poll();
+        if (q1.isEmpty()) {
+            return null;
         }
+        // Move first size - 1 elements to q2
+        while (q1.size() > 1) {
+            q2.offer(q1.poll());
+        }
+        // Last element is the stack top
+        Integer top = q1.poll();
+        // Swap q1 and q2
         Queue<Integer> temp = q1;
         q1 = q2;
         q2 = temp;
-        return prev;
+        return top;
     }
 
     /** Get the top element. */

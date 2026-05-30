@@ -6,6 +6,18 @@ import java.util.List;
 // Get all valid permutations of l pairs of (), m pairs of <> and n pairs of {}.
 // Assumption: l, m, n >= 0
 //             l + m + n > 0
+
+// 这套代码本质是：
+// DFS + 状态控制（remain + stack）
+// 3个关键状态：
+//      1. remain[] —— 还剩多少括号可以用: int[] remain = new int[] {l, l, m, m, n, n};
+//         偶数index = 左括号，奇数index = 右括号
+//      2. mStack —— 当前未匹配的左括号（核心）
+//         它保证：只能用正确顺序的右括号
+//         例如：当前 stack = [ '<', '(' ] --> 你只能关 (，不能关 <
+//      3. StringBuilder cur —— 当前构造的字符串
+
+
 public class AllValidPermutationsOfParentheses2 {
     private static final char[] PS = new char[] {'(', ')', '<', '>', '{', '}'};
 

@@ -1,3 +1,34 @@
+// 1. What does dp[i][j] mean?
+// dp[i][j] represents the minimum number of operations (insert, delete, replace)
+// needed to transform the first i characters of string "one"
+// into the first j characters of string "two".
+
+// 2. What is the base case?
+// dp[0][j] = j
+// Transforming an empty string into the first j characters of "two"
+// requires j insert operations.
+//
+// dp[i][0] = i
+// Transforming the first i characters of "one" into an empty string
+// requires i delete operations.
+
+// 3. What is the recurrence relation?
+// If one.charAt(i - 1) == two.charAt(j - 1):
+//   dp[i][j] = dp[i - 1][j - 1]
+//   (no operation needed since characters match)
+//
+// Otherwise:
+//   dp[i][j] = 1 + min(
+//       dp[i - 1][j - 1],  // replace
+//       dp[i - 1][j],      // delete
+//       dp[i][j - 1]       // insert
+//   )
+//
+// Explanation:
+// - Replace: change one[i-1] to two[j-1]
+// - Delete: remove one[i-1]
+// - Insert: add two[j-1] to "one"
+
 public class EditDistance {
     public int editDistance(String one, String two) {
         if (one.isEmpty()) return two.length();
